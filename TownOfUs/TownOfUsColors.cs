@@ -5,6 +5,8 @@ namespace TownOfUs;
 public static class TownOfUsColors
 {
     public static Color Inquisitor = new(0.85f, 0.26f, 0.57f, 1f);
+    public static Color CursedSoul = new(0.6471f, 0.6196f, 0.9176f, 1f);
+    // public static Color CursedSoul = new(0.4588f, 0.0f, 0.6862f, 1f);
 
     public static bool UseBasic { get; set; } = TownOfUsPlugin.UseCrewmateTeamColor.Value;
 

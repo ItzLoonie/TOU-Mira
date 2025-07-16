@@ -44,5 +44,6 @@ public enum BecomeOptions
     Amnesiac,
     Survivor,
     Mercenary,
-    Jester
+    Jester,
+    CursedSoul
 }

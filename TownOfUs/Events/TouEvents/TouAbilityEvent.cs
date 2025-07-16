@@ -105,6 +105,8 @@ public enum AbilityType
     AmnesiacPostRemember,
     ArsonistDouse,
 
+    CursedSoulSoulSwap,
+
     // ArsonistIgnite,
     // DoomsayerObserve,
     GlitchInitialHack,

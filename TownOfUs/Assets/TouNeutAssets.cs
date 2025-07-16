@@ -14,6 +14,9 @@ public static class TouNeutAssets
     public static LoadableAsset<Sprite> RememberButtonSprite { get; } =
         new LoadableResourceAsset($"{ButtonPath}.RememberButton.png");
 
+    public static LoadableAsset<Sprite> SoulSwapButtonSprite { get; } =
+        new LoadableResourceAsset($"{ButtonPath}.SoulSwapButton.png");
+
     public static LoadableAsset<Sprite> ProtectSprite { get; } =
         new LoadableResourceAsset($"{ButtonPath}.ProtectButton.png");
 

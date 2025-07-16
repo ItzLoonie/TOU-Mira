@@ -47,6 +47,7 @@ public static class TouRoleIcons
     public static LoadableAsset<Sprite> Transporter { get; } = new LoadableResourceAsset($"{iconPath}.Transporter.png");
 
     public static LoadableAsset<Sprite> Amnesiac { get; } = new LoadableResourceAsset($"{iconPath}.Amnesiac.png");
+    public static LoadableAsset<Sprite> CursedSoul { get; } = new LoadableResourceAsset($"{iconPath}.CursedSoul.png");
 
     public static LoadableAsset<Sprite> GuardianAngel { get; } =
         new LoadableResourceAsset($"{iconPath}.GuardianAngel.png");

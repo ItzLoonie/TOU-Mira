@@ -65,5 +65,6 @@ public enum TownOfUsRpc : uint
     ButtonBarry,
     LookoutSeePlayer,
     AnimateNewReveal,
-    SheriffMisfire
+    SheriffMisfire,
+    SoulSwap
 }
