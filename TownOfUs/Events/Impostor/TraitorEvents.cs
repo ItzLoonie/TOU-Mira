@@ -32,6 +32,16 @@ public static class TraitorEvents
                 return;
             }
 
+            var all = PlayerControl.AllPlayerControls.ToArray();
+
+            foreach (var player in all)
+            {
+                if (player.IsRole<CultistRole>())
+                {
+                    return;
+                }
+            }
+
             foreach (var player in alives)
             {
                 if (player.IsImpostor() || (player.Is(RoleAlignment.NeutralKilling) &&

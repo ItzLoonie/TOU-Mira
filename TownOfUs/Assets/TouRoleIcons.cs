@@ -89,6 +89,7 @@ public static class TouRoleIcons
     public static LoadableAsset<Sprite> Warlock { get; } = new LoadableResourceAsset($"{iconPath}.Warlock.png");
 
     public static LoadableAsset<Sprite> Blackmailer { get; } = new LoadableResourceAsset($"{iconPath}.Blackmailer.png");
+    public static LoadableAsset<Sprite> Cultist { get; } = new LoadableResourceAsset($"{iconPath}.Cultist.png");
     public static LoadableAsset<Sprite> Hypnotist { get; } = new LoadableResourceAsset($"{iconPath}.Hypnotist.png");
     public static LoadableAsset<Sprite> Janitor { get; } = new LoadableResourceAsset($"{iconPath}.Janitor.png");
     public static LoadableAsset<Sprite> Miner { get; } = new LoadableResourceAsset($"{iconPath}.Miner.png");

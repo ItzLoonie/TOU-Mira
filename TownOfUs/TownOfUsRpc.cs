@@ -66,5 +66,6 @@ public enum TownOfUsRpc : uint
     LookoutSeePlayer,
     AnimateNewReveal,
     SheriffMisfire,
-    SoulSwap
+    SoulSwap,
+    Indoctrinate
 }

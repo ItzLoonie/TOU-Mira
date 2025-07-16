@@ -66,6 +66,9 @@ public static class TouImpAssets
     public static LoadableAsset<Sprite> CleanButtonSprite { get; } =
         new LoadableResourceAsset($"{ButtonPath}.CleanButton.png");
 
+    public static LoadableAsset<Sprite> IndoctrinateButtonSprite { get; } =
+        new LoadableResourceAsset($"{ButtonPath}.IndoctrinateButton.png");
+
     public static LoadableAsset<Sprite> MineSprite { get; } = new LoadableResourceAsset($"{ButtonPath}.MineButton.png");
     public static LoadableAsset<Sprite> DragSprite { get; } = new LoadableResourceAsset($"{ButtonPath}.DragButton.png");
     public static LoadableAsset<Sprite> DropSprite { get; } = new LoadableResourceAsset($"{ButtonPath}.DropButton.png");

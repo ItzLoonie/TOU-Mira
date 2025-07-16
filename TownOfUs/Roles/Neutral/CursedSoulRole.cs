@@ -11,6 +11,7 @@ using Reactor.Utilities;
 using TownOfUs.Events.TouEvents;
 using TownOfUs.Modifiers.Game.Impostor;
 using TownOfUs.Modifiers.Game.Neutral;
+using TownOfUs.Modifiers.Neutral;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Roles.Neutral;
@@ -48,7 +49,7 @@ public sealed class CursedSoulRole(IntPtr cppPtr)
     public string GetAdvancedDescription()
     {
         return
-            "The Cursed Soul is a Neutral Evil role that gains access to a new role by stealing it from another player. Use the role you steal to win the game.\nBeware though, the player you steal from becomes a Cursed Soul!\n\nThe Executioner, Guardian Angel, Inquisitor and other Cursed Souls cannot be swapped." +
+            "The Cursed Soul is a Neutral Evil role that gains access to a new role by stealing it from another player. Use the role you steal to win the game.\nBeware though, the player you steal from becomes a Cursed Soul!\n\nOther Cursed Souls cannot be swapped with." +
             MiscUtils.AppendOptionsText(GetType());
     }
 
@@ -75,8 +76,7 @@ public sealed class CursedSoulRole(IntPtr cppPtr)
                 !x.HasDied() &&
                 !x.IsRole<CursedSoulRole>() &&
                 !x.IsRole<ExecutionerRole>() &&
-                !x.IsRole<GuardianAngelTouRole>() &&
-                !x.IsRole<InquisitorRole>())
+                !x.IsRole<GuardianAngelTouRole>())
             .ToList();
 
         if (player.Data.Role is not CursedSoulRole)
@@ -121,9 +121,41 @@ public sealed class CursedSoulRole(IntPtr cppPtr)
         player.SetKillTimer(reset);
 
 
+        if (player.Data.Role is InquisitorRole inquis)
+        {
+            inquis.Targets = [.. ModifierUtils.GetPlayersWithModifier<InquisitorHereticModifier>()];
+            inquis.TargetRoles = [.. ModifierUtils.GetActiveModifiers<InquisitorHereticModifier>().Select(x => x.TargetRole).OrderBy(x => x.NiceName)];
+        }
+
         if (player.Data.Role is MayorRole mayor)
         {
             mayor.Revealed = true;
+        }
+
+        if (player.Data.Role is ExecutionerRole exe)
+        {
+            if (exe.Target == null)
+            {
+                exe.AssignTargets();
+            }
+
+            if (exe.Target != null)
+            {
+                exe.CheckTargetDeath(exe.Target);
+            }
+        }
+
+        if (player.Data.Role is GuardianAngelTouRole ga)
+        {
+            if (ga.Target == null)
+            {
+                ga.AssignTargets();
+            }
+
+            if (ga.Target != null)
+            {
+                ga.CheckTargetDeath(player, ga.Target);
+            }
         }
 
         if (player.AmOwner)
