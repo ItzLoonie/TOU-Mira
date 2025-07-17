@@ -9,7 +9,7 @@ namespace TownOfUs.Modifiers;
 public sealed class KnightedModifier : BaseModifier
 {
     public override string ModifierName => "Knighted";
-    public override bool HideOnUi => false;
+    public override bool HideOnUi => true;
     public override LoadableAsset<Sprite>? ModifierIcon => TouModifierIcons.Knighted;
     public override bool Unique => false;
 
