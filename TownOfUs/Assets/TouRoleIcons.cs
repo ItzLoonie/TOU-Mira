@@ -42,6 +42,7 @@ public static class TouRoleIcons
     public static LoadableAsset<Sprite> Plumber { get; } = new LoadableResourceAsset($"{iconPath}.Plumber.png");
     public static LoadableAsset<Sprite> Politician { get; } = new LoadableResourceAsset($"{iconPath}.Politician.png");
     public static LoadableAsset<Sprite> Mayor { get; } = new LoadableResourceAsset($"{iconPath}.Mayor.png");
+    public static LoadableAsset<Sprite> Monarch { get; } = new LoadableResourceAsset($"{iconPath}.Monarch.png");
     public static LoadableAsset<Sprite> Prosecutor { get; } = new LoadableResourceAsset($"{iconPath}.Prosecutor.png");
     public static LoadableAsset<Sprite> Swapper { get; } = new LoadableResourceAsset($"{iconPath}.Swapper.png");
     public static LoadableAsset<Sprite> Transporter { get; } = new LoadableResourceAsset($"{iconPath}.Transporter.png");

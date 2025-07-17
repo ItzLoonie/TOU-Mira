@@ -69,4 +69,5 @@ public enum TownOfUsRpc : uint
     SoulSwap,
     Indoctrinate,
     Poison,
+    Knight,
 }
