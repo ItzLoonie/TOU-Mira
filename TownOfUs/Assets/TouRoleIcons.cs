@@ -85,6 +85,7 @@ public static class TouRoleIcons
 
     public static LoadableAsset<Sprite> Bomber { get; } = new LoadableResourceAsset($"{iconPath}.Bomber.png");
     public static LoadableAsset<Sprite> Scavenger { get; } = new LoadableResourceAsset($"{iconPath}.Scavenger.png");
+    public static LoadableAsset<Sprite> Poisoner { get; } = new LoadableResourceAsset($"{iconPath}.Poisoner.png");
     public static LoadableAsset<Sprite> Traitor { get; } = new LoadableResourceAsset($"{iconPath}.Traitor.png");
     public static LoadableAsset<Sprite> Warlock { get; } = new LoadableResourceAsset($"{iconPath}.Warlock.png");
 

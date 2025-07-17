@@ -74,9 +74,7 @@ public sealed class CursedSoulRole(IntPtr cppPtr)
         var swappable = PlayerControl.AllPlayerControls.ToArray()
             .Where(x =>
                 !x.HasDied() &&
-                !x.IsRole<CursedSoulRole>() &&
-                !x.IsRole<ExecutionerRole>() &&
-                !x.IsRole<GuardianAngelTouRole>())
+                !x.IsRole<CursedSoulRole>())
             .ToList();
 
         if (player.Data.Role is not CursedSoulRole)
@@ -88,7 +86,7 @@ public sealed class CursedSoulRole(IntPtr cppPtr)
         var randomness = OptionGroupSingleton<CursedSoulOptions>.Instance.SoulSwapRandomness;
         var rng = UnityEngine.Random.Range(0f, 100f);
 
-        if (rng > randomness)
+        if (rng < randomness)
         {
             swappable.Remove(target);
             if (swappable.Count > 0)

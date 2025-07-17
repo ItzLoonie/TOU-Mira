@@ -67,5 +67,6 @@ public enum TownOfUsRpc : uint
     AnimateNewReveal,
     SheriffMisfire,
     SoulSwap,
-    Indoctrinate
+    Indoctrinate,
+    Poison,
 }
