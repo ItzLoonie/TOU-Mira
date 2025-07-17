@@ -116,6 +116,9 @@ public sealed class CelebrityModifier : TouGameModifier, IWikiDiscoverable
             case WerewolfRole:
                 cod = "rampaged";
                 break;
+            case SerialKillerRole:
+                cod = "stabbed";
+                break;
         }
 
         if (customDeath != string.Empty && customDeath != "")
