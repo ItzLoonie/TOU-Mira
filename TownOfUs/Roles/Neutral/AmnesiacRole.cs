@@ -150,11 +150,7 @@ public sealed class AmnesiacRole(IntPtr cppPtr)
             {
                 target.ChangeRole((ushort)RoleTypes.Impostor);
             }
-            else if (target.Data.Role is CursedSoulRole)
-            {
-                target.ChangeRole(RoleId.Get<CursedSoulRole>());
-            }
-            else if (target.IsNeutral() && player.Data.Role is ITownOfUsRole touRole && target.Data.Role is not CursedSoulRole)
+            else if (target.IsNeutral() && player.Data.Role is ITownOfUsRole touRole)
             {
                 switch (touRole.RoleAlignment)
                 {
