@@ -6,7 +6,7 @@ using TownOfUs.Roles.Impostor;
 using TownOfUs.Utilities;
 using UnityEngine;
 
-namespace TownOfUs.Buttons.Neutral;
+namespace TownOfUs.Buttons.Impostor;
 
 public sealed class PoisonerPoisonButton : TownOfUsRoleButton<PoisonerRole, PlayerControl>
 {

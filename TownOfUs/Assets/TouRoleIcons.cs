@@ -66,6 +66,7 @@ public static class TouRoleIcons
     public static LoadableAsset<Sprite> Glitch { get; } = new LoadableResourceAsset($"{iconPath}.Glitch.png");
     public static LoadableAsset<Sprite> Juggernaut { get; } = new LoadableResourceAsset($"{iconPath}.Juggernaut.png");
     public static LoadableAsset<Sprite> SerialKiller { get; } = new LoadableResourceAsset($"{iconPath}.SerialKiller.png");
+    public static LoadableAsset<Sprite> Shroud { get; } = new LoadableResourceAsset($"{iconPath}.Shroud.png");
 
     public static LoadableAsset<Sprite> Plaguebearer { get; } =
         new LoadableResourceAsset($"{iconPath}.Plaguebearer.png");

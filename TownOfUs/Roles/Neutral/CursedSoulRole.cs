@@ -35,7 +35,7 @@ public sealed class CursedSoulRole(IntPtr cppPtr)
 
     public CustomRoleConfiguration Configuration => new(this)
     {
-        IntroSound = TouAudio.GlitchSound,
+        IntroSound = CustomRoleUtils.GetIntroSound(RoleTypes.Phantom),
         GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>(),
         Icon = TouRoleIcons.CursedSoul
     };
