@@ -108,6 +108,7 @@ public enum AbilityType
     CursedSoulSoulSwap,
     CultistIndoctrinate,
     PoisonerPoison,
+    CamouflagerCamoAbility,
 
     // ArsonistIgnite,
     // DoomsayerObserve,
