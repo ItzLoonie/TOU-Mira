@@ -51,7 +51,7 @@ public sealed class PoisonerRole(IntPtr cppPtr)
     [
         new("Poison",
             $"Poison someone, killing them {OptionGroupSingleton<PoisonerOptions>.Instance.PoisonDelay} second(s) later",
-            TouImpAssets.PlaceSprite)
+            TouImpAssets.PoisonButtonSprite)
     ];
 
     [MethodRpc((uint)TownOfUsRpc.Poison, SendImmediately = true)]

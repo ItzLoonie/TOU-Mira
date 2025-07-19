@@ -70,4 +70,6 @@ public enum TownOfUsRpc : uint
     Indoctrinate,
     Poison,
     Knight,
+    Hex,
+    Detonate,
 }
