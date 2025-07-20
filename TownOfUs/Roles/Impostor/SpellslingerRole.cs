@@ -10,6 +10,8 @@ using MiraAPI.Utilities;
 using Reactor.Utilities;
 using TownOfUs.Modifiers.Impostor;
 using MiraAPI.Networking;
+using TownOfUs.Modifiers;
+using TownOfUs.Events;
 // using TownOfUs.Modifiers;
 // using TownOfUs.Events;
 
@@ -150,6 +152,7 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
         TouAudio.PlaySound(TouAudio.ArsoIgniteSound);
         foreach (var target in hexed)
         {
+            player.AddModifier<IndirectAttackerModifier>(true);
             player.RpcCustomMurder(target, teleportMurderer: false, showKillAnim: false, playKillSound: false);
             // DeathHandlerModifier.RpcUpdateDeathHandler(target, "Hexed", DeathEventHandlers.CurrentRound, DeathHandlerOverride.SetTrue, $"By {player.Data.PlayerName}", lockInfo: DeathHandlerOverride.SetTrue);
             target.RemoveModifier<SpellslingerHexedModifier>();

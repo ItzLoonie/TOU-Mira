@@ -158,7 +158,7 @@ public sealed class ShroudRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRo
         }
 
         shroud?.RpcCustomMurder(target, teleportMurderer: false);
-        DeathHandlerModifier.RpcUpdateDeathHandler(target, "Compelled At", DeathEventHandlers.CurrentRound, DeathHandlerOverride.SetTrue, $"By {player.Data.PlayerName}", lockInfo: DeathHandlerOverride.SetTrue);
+        DeathHandlerModifier.RpcUpdateDeathHandler(target, "Compelled At", DeathEventHandlers.CurrentRound, DeathHandlerOverride.SetTrue, $"By {shroud?.Data.PlayerName}", lockInfo: DeathHandlerOverride.SetTrue);
 
 
         void ShowNotification(string message)
