@@ -152,7 +152,7 @@ public sealed class CursedSoulRole(IntPtr cppPtr)
 
             if (ga.Target != null)
             {
-                ga.CheckTargetDeath(player, ga.Target);
+                ga.CheckTargetDeath(ga.Target);
             }
         }
 

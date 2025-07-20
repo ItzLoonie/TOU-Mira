@@ -17,6 +17,7 @@ public sealed class SpellslingerHexButton : TownOfUsRoleButton<SpellslingerRole,
     public override float Cooldown => OptionGroupSingleton<SpellslingerOptions>.Instance.HexCooldown + MapCooldown;
     public override int MaxUses => (int)OptionGroupSingleton<SpellslingerOptions>.Instance.MaxHexes;
     public override LoadableAsset<Sprite> Sprite => TouImpAssets.HexButtonSprite;
+
     public override bool Enabled(RoleBehaviour? role)
     {
         return base.Enabled(role) && !SpellslingerRole.EveryoneHexed();
@@ -26,7 +27,6 @@ public sealed class SpellslingerHexButton : TownOfUsRoleButton<SpellslingerRole,
     {
         return PlayerControl.LocalPlayer.GetClosestLivingPlayer(false, Distance, predicate: x => !x.HasModifier<SpellslingerHexedModifier>());
     }
-
     protected override void OnClick()
     {
         if (Target == null)

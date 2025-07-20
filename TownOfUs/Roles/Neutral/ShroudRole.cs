@@ -8,6 +8,7 @@ using MiraAPI.Networking;
 using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
+using TownOfUs.Events;
 using TownOfUs.Modifiers;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Roles.Neutral;
@@ -157,6 +158,8 @@ public sealed class ShroudRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRo
         }
 
         shroud?.RpcCustomMurder(target, teleportMurderer: false);
+        DeathHandlerModifier.RpcUpdateDeathHandler(target, "Compelled At", DeathEventHandlers.CurrentRound, DeathHandlerOverride.SetTrue, $"By {player.Data.PlayerName}", lockInfo: DeathHandlerOverride.SetTrue);
+
 
         void ShowNotification(string message)
         {

@@ -6,6 +6,7 @@ using MiraAPI.Networking;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using Reactor.Networking.Attributes;
+using TownOfUs.Events;
 using TownOfUs.Modifiers;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
@@ -99,6 +100,7 @@ public sealed class PoisonerRole(IntPtr cppPtr)
         }
 
         player?.RpcCustomMurder(target, teleportMurderer: false);
+        DeathHandlerModifier.RpcUpdateDeathHandler(target, "Poisoned", DeathEventHandlers.CurrentRound, DeathHandlerOverride.SetTrue, $"By {player?.Data.PlayerName}", lockInfo: DeathHandlerOverride.SetTrue);
 
         void ShowNotification(string message)
         {

@@ -10,6 +10,8 @@ using MiraAPI.Utilities;
 using Reactor.Utilities;
 using TownOfUs.Modifiers.Impostor;
 using MiraAPI.Networking;
+// using TownOfUs.Modifiers;
+// using TownOfUs.Events;
 
 namespace TownOfUs.Roles.Impostor;
 
@@ -33,7 +35,34 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
     [HideFromIl2Cpp]
     public StringBuilder SetTabText()
     {
-        return ITownOfUsRole.SetNewTabText(this);
+        var sb = ITownOfUsRole.SetNewTabText(this);
+        var allAlive = Helpers.GetAlivePlayers();
+
+        var hexed = allAlive
+            .Where(p => p.HasModifier<SpellslingerHexedModifier>())
+            .ToList();
+
+        var unhexedNonImpostors = allAlive
+            .Where(p => !p.IsImpostor() && !p.HasModifier<SpellslingerHexedModifier>())
+            .ToList();
+
+        if (hexed.Count > 0)
+        {
+            sb.Append("\n<b>Hexed Players:</b>");
+            foreach (var player in hexed)
+            {
+                var color = player.IsImpostor() ? "red" : "white";
+                sb.Append(TownOfUsPlugin.Culture, $"\n<color={color}><size=75%>{player.Data.PlayerName}</size></color>");
+            }
+        }
+
+        sb.Append(TownOfUsPlugin.Culture, $"\n\n<b>Players Left to Hex: {unhexedNonImpostors.Count}</b>");
+        // foreach (var player in unhexedNonImpostors)
+        // {
+        //     sb.Append(TownOfUsPlugin.Culture, $"\n• {player.Data.PlayerName}");
+        // }
+
+        return sb;
     }
 
     public string GetAdvancedDescription()
@@ -122,13 +151,14 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
         foreach (var target in hexed)
         {
             player.RpcCustomMurder(target, teleportMurderer: false, showKillAnim: false, playKillSound: false);
+            // DeathHandlerModifier.RpcUpdateDeathHandler(target, "Hexed", DeathEventHandlers.CurrentRound, DeathHandlerOverride.SetTrue, $"By {player.Data.PlayerName}", lockInfo: DeathHandlerOverride.SetTrue);
             target.RemoveModifier<SpellslingerHexedModifier>();
 
             if (player.AmOwner && target == player)
             {
                 var selfNotif = Helpers.CreateAndShowNotification(
-                    $"<b>You detonated... yourself?</b>",
-                    Color.red, new Vector3(0f, 1f, -20f), spr: TouRoleIcons.Spellslinger.LoadAsset());
+                    $"<b>You hexed... yourself?</b>",
+                    Color.white, new Vector3(0f, 1f, -20f), spr: TouRoleIcons.Spellslinger.LoadAsset());
                 selfNotif.Text.SetOutlineThickness(0.4f);
             }
         }
@@ -137,7 +167,7 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
         {
             var notif = Helpers.CreateAndShowNotification(
                 $"<b>All {hexed.Count} hexed players detonated!</b>", 
-                Color.magenta, new Vector3(0f, 1f, -20f), 
+                Color.white, new Vector3(0f, 1f, -20f), 
                 spr: TouRoleIcons.Spellslinger.LoadAsset());
             notif.Text.SetOutlineThickness(0.4f);
         }
