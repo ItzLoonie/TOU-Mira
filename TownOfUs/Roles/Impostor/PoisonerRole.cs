@@ -99,8 +99,10 @@ public sealed class PoisonerRole(IntPtr cppPtr)
             ShowNotification($"You died to poison!");
         }
 
+        player.RpcAddModifier<IndirectAttackerModifier>();
         player?.RpcCustomMurder(target, teleportMurderer: false);
         DeathHandlerModifier.RpcUpdateDeathHandler(target, "Poisoned", DeathEventHandlers.CurrentRound, DeathHandlerOverride.SetTrue, $"By {player?.Data.PlayerName}", lockInfo: DeathHandlerOverride.SetTrue);
+        player?.RpcRemoveModifier<IndirectAttackerModifier>();
 
         void ShowNotification(string message)
         {

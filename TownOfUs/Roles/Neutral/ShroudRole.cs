@@ -157,8 +157,11 @@ public sealed class ShroudRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRo
             ShowNotification($"{enshrouded} was compelled by a {TownOfUsColors.Shroud.ToTextColor()}Shroud</color> to kill you.");
         }
 
+        shroud.RpcAddModifier<IndirectAttackerModifier>();
+
         shroud?.RpcCustomMurder(target, teleportMurderer: false);
         DeathHandlerModifier.RpcUpdateDeathHandler(target, "Compelled At", DeathEventHandlers.CurrentRound, DeathHandlerOverride.SetTrue, $"By {shroud?.Data.PlayerName}", lockInfo: DeathHandlerOverride.SetTrue);
+        shroud?.RpcRemoveModifier<IndirectAttackerModifier>();
 
 
         void ShowNotification(string message)

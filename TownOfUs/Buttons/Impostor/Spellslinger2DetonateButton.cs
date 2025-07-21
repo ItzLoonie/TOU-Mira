@@ -10,7 +10,7 @@ using TownOfUs.Options.Roles.Impostor;
 
 namespace TownOfUs.Buttons.Impostor;
 
-public sealed class SpellslingerDetonateButton : TownOfUsRoleButton<SpellslingerRole>
+public sealed class SpellslingerDetonateButton : TownOfUsRoleButton<SpellslingerRole, PlayerControl>
 {
     public override string Name => "Detonate";
     public override string Keybind => Keybinds.SecondaryAction;
@@ -24,6 +24,10 @@ public sealed class SpellslingerDetonateButton : TownOfUsRoleButton<Spellslinger
         return base.Enabled(role) && SpellslingerRole.EveryoneHexed();
     }
 
+    public override PlayerControl? GetTarget()
+    {
+        return PlayerControl.LocalPlayer.GetClosestLivingPlayer(true, Distance, predicate: x => x.HasModifier<SpellslingerHexedModifier>());
+    }
     protected override void OnClick()
     {
         SpellslingerRole.RpcDetonate(PlayerControl.LocalPlayer);
