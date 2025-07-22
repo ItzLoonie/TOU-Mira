@@ -9,13 +9,10 @@ public sealed class SerialKillerOptions : AbstractOptionGroup<SerialKillerRole>
 {
     public override string GroupName => "Serial Killer";
 
-    [ModdedNumberOption("Kill Cooldown (Primary)", 10f, 60f, 2.5f, MiraNumberSuffixes.Seconds)]
-    public float PrimaryKillCooldown { get; set; } = 25f;
-    [ModdedNumberOption("Kill Cooldown (Secondary)", 10f, 60f, 2.5f, MiraNumberSuffixes.Seconds)]
-    public float SecondaryKillCooldown { get; set; } = 35f;
-
-    [ModdedNumberOption("Amount of Extra Kills", 0f, 5f, 1f, MiraNumberSuffixes.None)]
-    public float AmtOfExtraKills { get; set; } = 0f;
+    [ModdedNumberOption("Kill Cooldown", 10f, 60f, 2.5f, MiraNumberSuffixes.Seconds)]
+    public float KillCooldown { get; set; } = 25f;
+    [ModdedNumberOption("Bloodlust Duration", 1f, 15f, 0.5f, MiraNumberSuffixes.Seconds)]
+    public float BloodlustDuration { get; set; } = 2.5f;
 
     [ModdedToggleOption("Serial Killer Can Vent")]
     public bool CanVent { get; set; } = true;

@@ -158,6 +158,7 @@ public sealed class CursedSoulRole(IntPtr cppPtr)
 
         if (player.AmOwner)
         {
+            Coroutines.Start(MiscUtils.CoFlash(player.Data.Role.TeamColor));
             var notif1 = Helpers.CreateAndShowNotification(
                 $"<b>You swapped souls with someone and got {player.Data.Role.TeamColor.ToTextColor()}{player.Data.Role.NiceName}</color>!</b>",
                 Color.white, new Vector3(0f, 1f, -20f), spr: TouRoleIcons.CursedSoul.LoadAsset());
@@ -166,6 +167,7 @@ public sealed class CursedSoulRole(IntPtr cppPtr)
 
         if (target.AmOwner)
         {
+            Coroutines.Start(MiscUtils.CoFlash(TownOfUsColors.CursedSoul));
             var notif2 = Helpers.CreateAndShowNotification(
                 $"<b>A {TownOfUsColors.CursedSoul.ToTextColor()}Cursed Soul</color> has swapped souls with you!</b>",
                 Color.white, new Vector3(0f, 1f, -20f), spr: TouRoleIcons.CursedSoul.LoadAsset());

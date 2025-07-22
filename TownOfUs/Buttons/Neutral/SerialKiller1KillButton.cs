@@ -1,7 +1,10 @@
 using MiraAPI.GameOptions;
+using MiraAPI.Modifiers;
 using MiraAPI.Networking;
+using MiraAPI.Utilities;
 using MiraAPI.Utilities.Assets;
 using Reactor.Utilities;
+using TownOfUs.Modifiers;
 using TownOfUs.Options.Roles.Neutral;
 using TownOfUs.Roles.Neutral;
 using TownOfUs.Utilities;
@@ -16,7 +19,7 @@ public sealed class SerialKiller1KillButton : TownOfUsRoleButton<SerialKillerRol
     public override string Keybind => Keybinds.PrimaryAction;
     public override Color TextOutlineColor => TownOfUsColors.SerialKiller;
     public override LoadableAsset<Sprite> Sprite => TouNeutAssets.SerialKillerKillSprite;
-    public override float Cooldown => OptionGroupSingleton<SerialKillerOptions>.Instance.PrimaryKillCooldown + MapCooldown;
+    public override float Cooldown => OptionGroupSingleton<SerialKillerOptions>.Instance.KillCooldown + MapCooldown;
 
     public void SetDiseasedTimer(float multiplier)
     {
@@ -32,6 +35,17 @@ public sealed class SerialKiller1KillButton : TownOfUsRoleButton<SerialKillerRol
         }
 
         PlayerControl.LocalPlayer.RpcCustomMurder(Target);
+        PlayerControl.LocalPlayer.AddModifier<SerialKillerBloodlustModifier>();
+        if (PlayerControl.LocalPlayer.AmOwner)
+        {
+            Coroutines.Start(MiscUtils.CoFlash(TownOfUsColors.SerialKiller));
+
+            var notif = Helpers.CreateAndShowNotification(
+                $"<b>Your bloodlust is ready. You have {OptionGroupSingleton<SerialKillerOptions>.Instance.BloodlustDuration}s to kill another player!</b>",
+                Color.white, new Vector3(0f, 1f, -20f), spr: TouRoleIcons.SerialKiller.LoadAsset());
+            notif.Text.SetOutlineThickness(0.35f);
+        }
+
 
     }
 

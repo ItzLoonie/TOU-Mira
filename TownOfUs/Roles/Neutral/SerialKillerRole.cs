@@ -17,8 +17,8 @@ public sealed class SerialKillerRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 {
     public DoomableType DoomHintType => DoomableType.Relentless;
     public string RoleName => "Serial Killer";
-    public string RoleDescription => $"Kill with double the power";
-    public string RoleLongDescription => "Kill off crewmates with both your kill buttons!";
+    public string RoleDescription => $"Kill to activate your bloodlust";
+    public string RoleLongDescription => "Kill a player to temporarily gain access to your second kill button!";
     public Color RoleColor => TownOfUsColors.SerialKiller;
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
@@ -58,18 +58,15 @@ public sealed class SerialKillerRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     public string GetAdvancedDescription()
     {
         return
-            $"The Serial Killer is a Neutral Killing role that wins by being the last killer alive. They have a second kill button on a separate kill cooldown." +
+            $"The Serial Killer is a Neutral Killing role that wins by being the last killer alive. They have a second kill button they can use once for a short amount of time after killing someone with their primary kill button." +
             MiscUtils.AppendOptionsText(GetType());
     }
 
     [HideFromIl2Cpp]
     public List<CustomButtonWikiDescription> Abilities { get; } =
     [
-        new("Kill",
-            $"Kill a player.\nYour second kill button will not reset.",
-            TouNeutAssets.SerialKillerKillSprite),
-        new("Kill",
-            $"Kill a player.\nYour first kill button will not reset.",
+        new("Bloodlust (Passive)",
+            $"Gain access to your second kill button for up to {OptionGroupSingleton<SerialKillerOptions>.Instance.BloodlustDuration} second(s).",
             TouNeutAssets.SerialKillerKillSprite),
     ];
     public override void Initialize(PlayerControl player)

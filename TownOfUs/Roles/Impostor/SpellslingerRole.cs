@@ -150,6 +150,7 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
         }
 
         TouAudio.PlaySound(TouAudio.ArsoIgniteSound);
+        Coroutines.Start(MiscUtils.CoFlash(TownOfUsColors.Impostor));
         foreach (var target in hexed)
         {
             player.RpcAddModifier<IndirectAttackerModifier>(true);
