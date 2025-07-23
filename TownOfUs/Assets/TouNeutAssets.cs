@@ -99,18 +99,6 @@ public static class TouNeutAssets
     public static LoadableAsset<Sprite> PestVentSprite { get; } =
         new LoadableResourceAsset($"{ButtonPath}.PestVentButton.png");
 
-    public static LoadableAsset<Sprite> BersKillSprite { get; } =
-        new LoadableResourceAsset($"{ButtonPath}.BersKillButton.png");
-
-    public static LoadableAsset<Sprite> BersVentSprite { get; } =
-        new LoadableResourceAsset($"{ButtonPath}.BersVentButton.png");
-
-    public static LoadableAsset<Sprite> WarKillSprite { get; } =
-        new LoadableResourceAsset($"{ButtonPath}.WarKillButton.png");
-
-    public static LoadableAsset<Sprite> WarVentSprite { get; } =
-        new LoadableResourceAsset($"{ButtonPath}.WarVentButton.png");
-
     public static LoadableAsset<Sprite> ReapSprite { get; } = new LoadableResourceAsset($"{ButtonPath}.ReapButton.png");
 
     public static LoadableAsset<Sprite> ReaperVentSprite { get; } =

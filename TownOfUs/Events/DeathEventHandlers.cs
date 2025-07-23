@@ -150,10 +150,6 @@ public static class DeathEventHandlers
                 case SerialKillerRole:
                     cod = "Stabbed";
                     break;
-                case BerserkerRole:
-                case WarRole:
-                    cod = "Destroyed";
-                    break;
             }
 
             if (source.Data.Role is PhantomTouRole)
