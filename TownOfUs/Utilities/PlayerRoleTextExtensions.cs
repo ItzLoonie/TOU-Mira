@@ -204,6 +204,9 @@ public static class PlayerRoleTextExtensions
         if (player.HasModifier<SpellslingerHexedModifier>() && (PlayerControl.LocalPlayer.HasDied() && genOpt.TheDeadKnow && !hidden || PlayerControl.LocalPlayer.IsImpostor()))
             name += $" {TownOfUsColors.Impostor.ToTextColor()}乂</color>";
 
+        if (player.HasModifier<PoisonerPoisonedModifier>() && !player.HasDied() && (PlayerControl.LocalPlayer.HasDied() && genOpt.TheDeadKnow && !hidden || PlayerControl.LocalPlayer.IsImpostor()))
+            name += $" {TownOfUsColors.Impostor.ToTextColor()}%</color>";
+
         return name;
     }
 }

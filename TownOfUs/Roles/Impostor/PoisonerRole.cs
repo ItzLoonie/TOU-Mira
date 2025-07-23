@@ -8,6 +8,7 @@ using MiraAPI.Utilities;
 using Reactor.Networking.Attributes;
 using TownOfUs.Events;
 using TownOfUs.Modifiers;
+using TownOfUs.Modifiers.Impostor;
 using TownOfUs.Modules;
 using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Roles.Impostor;
@@ -66,6 +67,7 @@ public sealed class PoisonerRole(IntPtr cppPtr)
             if (player.AmOwner)
             {
                 ShowNotification($"{targetName} died before your poison could take effect.");
+                target.RemoveModifier<PoisonerPoisonedModifier>();
             }
             return;
         }
@@ -75,6 +77,7 @@ public sealed class PoisonerRole(IntPtr cppPtr)
             if (player.AmOwner)
             {
                 ShowNotification($"{targetName} was protected from your poison!");
+                target.RemoveModifier<PoisonerPoisonedModifier>();
             }
             return;
         }
@@ -84,6 +87,7 @@ public sealed class PoisonerRole(IntPtr cppPtr)
             if (player.AmOwner)
             {
                 ShowNotification($"{targetName}'s first dead shield protected them from your poison!");
+                target.RemoveModifier<PoisonerPoisonedModifier>();
             }
             return;
         }
@@ -99,7 +103,7 @@ public sealed class PoisonerRole(IntPtr cppPtr)
             ShowNotification($"You died to poison!");
         }
 
-        player.RpcAddModifier<IndirectAttackerModifier>();
+        player.RpcAddModifier<IndirectAttackerModifier>(false);
         player?.RpcCustomMurder(target, teleportMurderer: false);
         DeathHandlerModifier.RpcUpdateDeathHandler(target, "Poisoned", DeathEventHandlers.CurrentRound, DeathHandlerOverride.SetTrue, $"By {player?.Data.PlayerName}", lockInfo: DeathHandlerOverride.SetTrue);
         player?.RpcRemoveModifier<IndirectAttackerModifier>();

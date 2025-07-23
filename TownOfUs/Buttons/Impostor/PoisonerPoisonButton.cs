@@ -1,6 +1,8 @@
 using MiraAPI.GameOptions;
+using MiraAPI.Modifiers;
 using MiraAPI.Utilities;
 using MiraAPI.Utilities.Assets;
+using TownOfUs.Modifiers.Impostor;
 using TownOfUs.Options.Roles.Impostor;
 using TownOfUs.Roles.Impostor;
 using TownOfUs.Utilities;
@@ -34,6 +36,7 @@ public sealed class PoisonerPoisonButton : TownOfUsRoleButton<PoisonerRole, Play
         OverrideName("Poisoned");
 
         _poisonedTarget = Target;
+        _poisonedTarget.AddModifier<PoisonerPoisonedModifier>();
 
         if (PlayerControl.LocalPlayer.AmOwner)
         {

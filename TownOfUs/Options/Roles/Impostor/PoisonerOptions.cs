@@ -1,5 +1,6 @@
 using MiraAPI.GameOptions;
 using MiraAPI.GameOptions.Attributes;
+using MiraAPI.GameOptions.OptionTypes;
 using MiraAPI.Utilities;
 using TownOfUs.Roles.Impostor;
 
@@ -17,4 +18,10 @@ public sealed class PoisonerOptions : AbstractOptionGroup<PoisonerRole>
 
     [ModdedNumberOption("Poison Kill Delay", 1f, 15f, 1f, MiraNumberSuffixes.Seconds)]
     public float PoisonDelay { get; set; } = 5f;
+    [ModdedToggleOption("Indicate Poison Kill")]
+    public bool IndicatePoisonKill { get; set; } = true;
+    public ModdedNumberOption PoisonedBodyDelay { get; } = new("Poisoned Kill Indicator Delay", 3f, 0f, 10f, 0.5f, MiraNumberSuffixes.Seconds)
+    {
+        Visible = () => OptionGroupSingleton<PoisonerOptions>.Instance.IndicatePoisonKill
+    };
 }

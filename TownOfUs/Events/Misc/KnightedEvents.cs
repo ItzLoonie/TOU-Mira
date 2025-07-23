@@ -6,7 +6,7 @@ using MiraAPI.Voting;
 using TownOfUs.Modifiers;
 using TownOfUs.Options.Roles.Crewmate;
 
-namespace TownOfUs.Events.Modifiers;
+namespace TownOfUs.Events.Misc;
 
 public static class KnightedEvents
 {
