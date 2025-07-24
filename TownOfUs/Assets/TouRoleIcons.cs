@@ -73,11 +73,6 @@ public static class TouRoleIcons
 
     public static LoadableAsset<Sprite> Pestilence { get; } = new LoadableResourceAsset($"{iconPath}.Pestilence.png");
 
-    public static LoadableAsset<Sprite> Berserker { get; } =
-        new LoadableResourceAsset($"{iconPath}.Berserker.png");
-
-    public static LoadableAsset<Sprite> War { get; } = new LoadableResourceAsset($"{iconPath}.War.png");
-
     public static LoadableAsset<Sprite> SoulCollector { get; } =
         new LoadableResourceAsset($"{iconPath}.SoulCollector.png");
 

@@ -123,10 +123,6 @@ public sealed class CelebrityModifier : TouGameModifier, IWikiDiscoverable
             case SerialKillerRole:
                 cod = "stabbed";
                 break;
-            case BerserkerRole:
-            case WarRole:
-                cod = "destroyed";
-                break;
         }
 
         if (customDeath != string.Empty && customDeath != "")
