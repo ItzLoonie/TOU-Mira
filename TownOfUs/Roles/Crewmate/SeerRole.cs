@@ -222,7 +222,6 @@ public sealed class SeerRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRol
             return;
         }
 
-        // Only increment if CurrentProphecy is set (which it always is if enum)
         seerRole.ChangeProphecy();
     }
 
