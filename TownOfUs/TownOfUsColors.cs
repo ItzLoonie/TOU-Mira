@@ -5,12 +5,23 @@ namespace TownOfUs;
 public static class TownOfUsColors
 {
     public static Color Inquisitor = new(0.85f, 0.26f, 0.57f, 1f);
-    // public static Color CursedSoul = new(0.6471f, 0.6196f, 0.9176f, 1f);
     public static Color SerialKiller = new(0.1137f, 0.3020f, 0.9882f, 1f);
-    public static Color Monarch => UseBasic ? Palette.CrewmateBlue : new Color(1f, 0.7451f, 0f, 1f);
     public static Color Shroud => new Color(0.4f, 0.6f, 1f, 1f);
-
     public static Color CursedSoul = new(0.4588f, 0.0f, 0.6862f, 1f);
+    // public static Color CursedSoul = new(0.6471f, 0.6196f, 0.9176f, 1f);
+    public static Color Berserker = new(0.8f, 0f, 0.2667f, 1f);
+    public static Color War = new(0.1686f, 0.0314f, 0.0157f, 1f);
+    public static Color Baker = new(0.749f, 0.6235f, 0.4784f, 1f);
+    public static Color Famine = new(0.5137f, 0.2745f, 0.1098f, 1f);
+    // public static Color SoulCollector = new(0.651f, 0.4588f, 0.6314f, 1f);
+    public static Color Death = new(0.3922f, 0.2706f, 0.3804f, 1f);
+
+    public static Color Bodyguard = UseBasic ? Palette.CrewmateBlue : new Color(0.0941f, 0.3529f, 0.7412f, 1f);
+    public static Color Crusader = UseBasic ? Palette.CrewmateBlue : new Color(0.7765f, 0.3608f, 0.2235f, 1f);
+    public static Color Coroner = UseBasic ? Palette.CrewmateBlue : new Color(0.5451f, 0f, 0f, 1f);
+    public static Color Monarch => UseBasic ? Palette.CrewmateBlue : new Color(1f, 0.7451f, 0f, 1f);
+    public static Color Psychic = UseBasic ? Palette.CrewmateBlue : new Color(0.4353f, 0.4118f, 0.549f, 1f);
+    public static Color Trickster = UseBasic ? Palette.CrewmateBlue : new Color(0.5412f, 0f, 0.1922f, 1f);
 
     public static bool UseBasic { get; set; } = TownOfUsPlugin.UseCrewmateTeamColor.Value;
 
