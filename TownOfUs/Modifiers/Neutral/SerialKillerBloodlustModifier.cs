@@ -8,7 +8,7 @@ public sealed class SerialKillerBloodlustModifier : TimedModifier
 {
     public override float Duration => OptionGroupSingleton<SerialKillerOptions>.Instance.BloodlustDuration;
     public override string ModifierName => "Bloodlust";
-    public override bool HideOnUi => false;
+    public override bool HideOnUi => true;
     public override bool Unique => true;
 
     public override string GetDescription()

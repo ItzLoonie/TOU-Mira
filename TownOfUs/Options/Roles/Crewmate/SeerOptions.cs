@@ -9,6 +9,6 @@ public sealed class SeerOptions : AbstractOptionGroup<SeerRole>
 {
     public override string GroupName => "Seer";
 
-    [ModdedNumberOption("Seer Cooldown", 10f, 60f, 2.5f, MiraNumberSuffixes.Seconds)]
+    [ModdedNumberOption("Compare Cooldown", 10f, 60f, 2.5f, MiraNumberSuffixes.Seconds)]
     public float SeerCooldown { get; set; } = 25f;
 }

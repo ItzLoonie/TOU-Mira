@@ -46,7 +46,6 @@ public sealed class TraitorChangeButton : TownOfUsRoleButton<TraitorRole>
                 .Where(role => role is not ITraitorIgnore ignore || !ignore.IsIgnored)
                 .Where(role => impRoles.Contains(RoleId.Get(role.GetType())))
                 .Where(role => role is not TraitorRole)
-                .Where(role => role is not CultistRole)
                 .ToList();
 
             if (OptionGroupSingleton<TraitorOptions>.Instance.RemoveExistingRoles)
