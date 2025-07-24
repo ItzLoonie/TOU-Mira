@@ -48,5 +48,4 @@ public enum BecomeOptions
     Survivor,
     Mercenary,
     Jester,
-    CursedSoul
 }

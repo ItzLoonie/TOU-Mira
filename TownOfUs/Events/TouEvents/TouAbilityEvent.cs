@@ -105,7 +105,6 @@ public enum AbilityType
     AmnesiacPostRemember,
     ArsonistDouse,
 
-    CursedSoulSoulSwap,
     CultistIndoctrinate,
     PoisonerPoison,
     SpellslingerHex,

@@ -65,7 +65,6 @@ public enum TownOfUsRpc : uint
     LookoutSeePlayer,
     AnimateNewReveal,
     SheriffMisfire,
-    SoulSwap,
     Indoctrinate,
     Poison,
     Knight,
