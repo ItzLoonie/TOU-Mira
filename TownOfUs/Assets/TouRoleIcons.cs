@@ -78,7 +78,6 @@ public static class TouRoleIcons
     public static LoadableAsset<Sprite> Vampire { get; } = new LoadableResourceAsset($"{iconPath}.Vampire.png");
     public static LoadableAsset<Sprite> Werewolf { get; } = new LoadableResourceAsset($"{iconPath}.Werewolf.png");
 
-    public static LoadableAsset<Sprite> Camouflager { get; } = new LoadableResourceAsset($"{iconPath}.Camouflager.png");
     public static LoadableAsset<Sprite> Eclipsal { get; } = new LoadableResourceAsset($"{iconPath}.Eclipsal.png");
     public static LoadableAsset<Sprite> Escapist { get; } = new LoadableResourceAsset($"{iconPath}.Escapist.png");
     public static LoadableAsset<Sprite> Grenadier { get; } = new LoadableResourceAsset($"{iconPath}.Grenadier.png");
