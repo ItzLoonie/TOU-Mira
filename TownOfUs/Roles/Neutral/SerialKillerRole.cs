@@ -28,7 +28,7 @@ public sealed class SerialKillerRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         CanUseVent = OptionGroupSingleton<SerialKillerOptions>.Instance.CanVent,
         IntroSound = TouAudio.WarlockIntroSound,
         Icon = TouRoleIcons.SerialKiller,
-        MaxRoleCount = 1,
+        MaxRoleCount = 15,
         GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
 
@@ -44,17 +44,28 @@ public sealed class SerialKillerRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
         return stringB;
     }
 
+    // public bool WinConditionMet()
+    // {
+    //     if (Player.HasDied())
+    //     {
+    //         return false;
+    //     }
+
+    //     var result = Helpers.GetAlivePlayers().Count <= 2 && MiscUtils.KillersAliveCount == 1;
+    //     return result;
+    // }
+
     public bool WinConditionMet()
     {
-        if (Player.HasDied())
+        var serialkillerCount = CustomRoleUtils.GetActiveRolesOfType<SerialKillerRole>().Count(x => !x.Player.HasDied());
+
+        if (MiscUtils.KillersAliveCount > serialkillerCount)
         {
             return false;
         }
 
-        var result = Helpers.GetAlivePlayers().Count <= 2 && MiscUtils.KillersAliveCount == 1;
-        return result;
+        return serialkillerCount >= Helpers.GetAlivePlayers().Count - serialkillerCount;
     }
-
     public string GetAdvancedDescription()
     {
         return

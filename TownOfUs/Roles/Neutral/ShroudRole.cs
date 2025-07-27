@@ -33,7 +33,7 @@ public sealed class ShroudRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRo
         CanUseVent = OptionGroupSingleton<ShroudOptions>.Instance.CanVent,
         IntroSound = CustomRoleUtils.GetIntroSound(RoleTypes.Phantom),
         Icon = TouRoleIcons.Shroud,
-        MaxRoleCount = 1,
+        MaxRoleCount = 15,
         GhostRole = (RoleTypes)RoleId.Get<NeutralGhostRole>()
     };
 
@@ -49,16 +49,29 @@ public sealed class ShroudRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRo
         return stringB;
     }
 
+    // public bool WinConditionMet()
+    // {
+    //     if (Player.HasDied())
+    //     {
+    //         return false;
+    //     }
+
+    //     var result = Helpers.GetAlivePlayers().Count <= 2 && MiscUtils.KillersAliveCount == 1;
+    //     return result;
+    // }
+
     public bool WinConditionMet()
     {
-        if (Player.HasDied())
+        var shroudCount = CustomRoleUtils.GetActiveRolesOfType<ShroudRole>().Count(x => !x.Player.HasDied());
+
+        if (MiscUtils.KillersAliveCount > shroudCount)
         {
             return false;
         }
 
-        var result = Helpers.GetAlivePlayers().Count <= 2 && MiscUtils.KillersAliveCount == 1;
-        return result;
+        return shroudCount >= Helpers.GetAlivePlayers().Count - shroudCount;
     }
+    
 
     public string GetAdvancedDescription()
     {
