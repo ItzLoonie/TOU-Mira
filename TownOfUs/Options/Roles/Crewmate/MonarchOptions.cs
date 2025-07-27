@@ -21,5 +21,7 @@ public sealed class MonarchOptions : AbstractOptionGroup<MonarchRole>
     public bool AllowSelfVotes { get; set; } = false;
     [ModdedNumberOption("Knight Delay", 1f, 10f, 1f, MiraNumberSuffixes.Seconds)]
     public float KnightDelay { get; set; } = 3f;
+    [ModdedToggleOption("Inform Monarch If a Knight Dies")]
+    public bool InformWhenKnightDies { get; set; } = true;
 
 }
