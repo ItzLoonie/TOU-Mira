@@ -22,12 +22,13 @@ public sealed class MonarchRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUs
     public string RoleLongDescription => "Knight crewmates to aid in meetings, but don't knight Impostors";
     public Color RoleColor => TownOfUsColors.Monarch;
     public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
-    public RoleAlignment RoleAlignment => RoleAlignment.CrewmateSupport;
+    public RoleAlignment RoleAlignment => RoleAlignment.CrewmatePower;
 
     public CustomRoleConfiguration Configuration => new(this)
     {
         Icon = TouRoleIcons.Monarch,
-        IntroSound = TouAudio.ToppatIntroSound
+        IntroSound = TouAudio.ToppatIntroSound,
+        MaxRoleCount = 1
     };
 
     [HideFromIl2Cpp]
@@ -38,7 +39,7 @@ public sealed class MonarchRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUs
 
     public string GetAdvancedDescription()
     {
-        return $"The Monarch is a Crewmate Support role that can knight other players, granting {(int)OptionGroupSingleton<MonarchOptions>.Instance.VotesPerKnight} vote(s) each."
+        return $"The Monarch is a Crewmate Power role that can knight other players, granting {(int)OptionGroupSingleton<MonarchOptions>.Instance.VotesPerKnight} vote(s) each."
                + MiscUtils.AppendOptionsText(GetType());
     }
 
