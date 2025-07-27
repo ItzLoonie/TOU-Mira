@@ -9,15 +9,15 @@ using UnityEngine;
 
 namespace TownOfUs.Buttons.Crewmate;
 
-public sealed class Seer1VisionButton : TownOfUsRoleButton<SeerRole>
+public sealed class Psychic1VisionButton : TownOfUsRoleButton<PsychicRole>
 {
     public override string Name => "Vision";
     public override string Keybind => Keybinds.PrimaryAction;
-    public override Color TextOutlineColor => TownOfUsColors.Seer;
+    public override Color TextOutlineColor => TownOfUsColors.Psychic;
 
     public override float Cooldown =>
-        OptionGroupSingleton<SeerOptions>.Instance.SeerCooldown + MapCooldown;
-    public override LoadableAsset<Sprite> Sprite => TouCrewAssets.SeerSprite;
+        OptionGroupSingleton<PsychicOptions>.Instance.PsychicCooldown + MapCooldown;
+    public override LoadableAsset<Sprite> Sprite => TouCrewAssets.PsychicSprite;
 
     public override void ClickHandler()
     {
@@ -77,7 +77,7 @@ public sealed class Seer1VisionButton : TownOfUsRoleButton<SeerRole>
                     {
                         return;
                     }
-                    SeerRole.RpcVision(PlayerControl.LocalPlayer, plr.PlayerId, plr2.PlayerId);
+                    PsychicRole.RpcVision(PlayerControl.LocalPlayer, plr.PlayerId, plr2.PlayerId);
                 }
             );
             foreach (var panel in player2Menu.potentialVictims)

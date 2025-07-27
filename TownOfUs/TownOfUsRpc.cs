@@ -74,5 +74,6 @@ public enum TownOfUsRpc : uint
     Hex,
     HexBomb,
     Vision,
-    Prophecy
+    Prophecy,
+    Compare
 }

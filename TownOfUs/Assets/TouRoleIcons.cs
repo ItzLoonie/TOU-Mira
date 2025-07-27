@@ -17,6 +17,7 @@ public static class TouRoleIcons
 
     public static LoadableAsset<Sprite> Lookout { get; } = new LoadableResourceAsset($"{iconPath}.Lookout.png");
     public static LoadableAsset<Sprite> Mystic { get; } = new LoadableResourceAsset($"{iconPath}.Mystic.png");
+    public static LoadableAsset<Sprite> Psychic { get; } = new LoadableResourceAsset($"{iconPath}.Psychic.png");
     public static LoadableAsset<Sprite> Seer { get; } = new LoadableResourceAsset($"{iconPath}.Seer.png");
     public static LoadableAsset<Sprite> Snitch { get; } = new LoadableResourceAsset($"{iconPath}.Snitch.png");
     public static LoadableAsset<Sprite> Spy { get; } = new LoadableResourceAsset($"{iconPath}.Spy.png");

@@ -26,6 +26,7 @@ public static class TouCrewAssets
         new LoadableResourceAsset($"{ButtonPath}.BlessButton.png");
 
     public static LoadableAsset<Sprite> SeerSprite { get; } = new LoadableResourceAsset($"{ButtonPath}.SeerButton.png");
+    public static LoadableAsset<Sprite> PsychicSprite { get; } = new LoadableResourceAsset($"{ButtonPath}.PsychicButton.png");
     public static LoadableAsset<Sprite> ProphecySprite { get; } = new LoadableResourceAsset($"{ButtonPath}.ProphecyButton.png");
 
     public static LoadableAsset<Sprite> TrackSprite { get; } =
