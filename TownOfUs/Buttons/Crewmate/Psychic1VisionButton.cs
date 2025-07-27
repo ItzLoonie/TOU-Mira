@@ -68,7 +68,7 @@ public sealed class Psychic1VisionButton : TownOfUsRoleButton<PsychicRole>
                 plr2 =>
                     plr2 != PlayerControl.LocalPlayer &&
                     plr2.PlayerId != plr.PlayerId &&
-                    (!plr2.HasDied() || Helpers.GetBodyById(plr2.PlayerId)) &&
+                    (!plr2.HasDied() || plr2.Data.Role is MayorRole mayor && mayor.Revealed  || Helpers.GetBodyById(plr2.PlayerId)) &&
                     (plr2.moveable || plr2.inVent),
                 plr2 =>
                 {
