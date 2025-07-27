@@ -4,6 +4,17 @@ namespace TownOfUs;
 
 public static class TownOfUsColors
 {
+
+    // Loonie Colors
+    // Crew Colors
+    public static Color Monarch => UseBasic ? Palette.CrewmateBlue : new Color(1f, 0.7451f, 0f, 1f);
+    // Neutral Colors
+    public static Color SerialKiller = new(0.1137f, 0.3020f, 0.9882f, 1f);
+    public static Color Shroud => new Color(0.4f, 0.6f, 1f, 1f);
+
+
+
+    // TOU Mira Colors
     public static Color Inquisitor = new(0.85f, 0.26f, 0.57f, 1f);
 
     public static bool UseBasic { get; set; } = TownOfUsPlugin.UseCrewmateTeamColor.Value;

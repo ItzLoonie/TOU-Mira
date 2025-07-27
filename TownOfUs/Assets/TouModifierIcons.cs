@@ -43,4 +43,6 @@ public static class TouModifierIcons
 
     public static LoadableAsset<Sprite> FirstRoundShield { get; } =
         new LoadableResourceAsset($"{iconPath}.FirstRoundShield.png");
+    public static LoadableAsset<Sprite> Knighted { get; } =
+        new LoadableResourceAsset($"{iconPath}.Knighted.png");
 }

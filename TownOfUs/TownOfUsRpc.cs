@@ -69,5 +69,10 @@ public enum TownOfUsRpc : uint
     LookoutSeePlayer,
     AnimateNewReveal,
     SheriffMisfire,
-    RetrainImpostor
+    RetrainImpostor,
+    Knight,
+    Hex,
+    Detonate,
+    Compare,
+    Prophecy
 }

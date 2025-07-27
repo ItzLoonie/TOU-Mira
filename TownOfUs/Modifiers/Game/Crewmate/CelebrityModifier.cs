@@ -141,6 +141,9 @@ public sealed class CelebrityModifier : TouGameModifier, IWikiDiscoverable
                 cod = mirror.UnleashString != string.Empty ? mirror.UnleashString.ToLower(CultureInfo.InvariantCulture) : "killed";
                 if (mirror.ContainedRole != null) role = mirror.ContainedRole;
                 break;
+            case SerialKillerRole:
+                cod = "stabbed";
+                break;
         }
 
         if (customDeath != string.Empty && customDeath != "")

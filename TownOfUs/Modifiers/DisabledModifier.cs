@@ -3,21 +3,22 @@ using MiraAPI.PluginLoading;
 
 namespace TownOfUs.Modifiers;
 
-// This modifier is used to disable abilities on a player, and can be set up to disable on an interval.
-// The modifier will disable all buttons, and can be set up to appear dead or unusable to certain roles with CanBeInteractWith or IsConsideredAlive
-// A few examples of these are IsConcealed for the shield modifiers, and also transporter checks checking if a player is alive or cannot be transported
+/// <summary>
+/// This modifier is used to disable abilities on a player and can be set up to disable on an interval.
+/// </summary>
 [MiraIgnore]
-public abstract class DisabledModifier : TimedModifier
+public abstract class DisabledModifier(bool canBeInteractedWith = true, bool isConsideredAlive = true, bool canUseAbilities = false, bool canReport = false, float duration = 1f) : TimedModifier
 {
     public override string ModifierName => "Disabled Modifier";
 
-    public virtual bool CanBeInteractedWith => true;
-    public virtual bool IsConsideredAlive => true;
-    public virtual bool CanUseAbilities => false;
-    public virtual bool CanReport => false;
-    public override float Duration => 1f;
-    public override bool AutoStart => false;
+    public virtual bool CanBeInteractedWith => canBeInteractedWith;
+    public virtual bool IsConsideredAlive => isConsideredAlive;
+    public virtual bool CanUseAbilities => canUseAbilities;
+    public virtual bool CanReport => canReport;
     public override bool HideOnUi => true;
+
+    public override float Duration => duration;
+    public override bool AutoStart => false;
 
     public override string GetDescription()
     {
@@ -27,7 +28,6 @@ public abstract class DisabledModifier : TimedModifier
     public override void OnDeath(DeathReason reason)
     {
         base.OnDeath(reason);
-
         ModifierComponent!.RemoveModifier(this);
     }
 }

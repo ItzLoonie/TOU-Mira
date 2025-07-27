@@ -34,6 +34,7 @@ public static class TouRoleIcons
     public static LoadableAsset<Sprite> Jailor { get; } = new LoadableResourceAsset($"{iconPath}.Jailor.png");
     public static LoadableAsset<Sprite> Politician { get; } = new LoadableResourceAsset($"{iconPath}.Politician.png");
     public static LoadableAsset<Sprite> Mayor { get; } = new LoadableResourceAsset($"{iconPath}.Mayor.png");
+    public static LoadableAsset<Sprite> Monarch { get; } = new LoadableResourceAsset($"{iconPath}.Monarch.png");
     public static LoadableAsset<Sprite> Prosecutor { get; } = new LoadableResourceAsset($"{iconPath}.Prosecutor.png");
     public static LoadableAsset<Sprite> Swapper { get; } = new LoadableResourceAsset($"{iconPath}.Swapper.png");
 
@@ -67,6 +68,8 @@ public static class TouRoleIcons
     public static LoadableAsset<Sprite> Arsonist { get; } = new LoadableResourceAsset($"{iconPath}.Arsonist.png");
     public static LoadableAsset<Sprite> Glitch { get; } = new LoadableResourceAsset($"{iconPath}.Glitch.png");
     public static LoadableAsset<Sprite> Juggernaut { get; } = new LoadableResourceAsset($"{iconPath}.Juggernaut.png");
+    public static LoadableAsset<Sprite> SerialKiller { get; } = new LoadableResourceAsset($"{iconPath}.SerialKiller.png");
+    public static LoadableAsset<Sprite> Shroud { get; } = new LoadableResourceAsset($"{iconPath}.Shroud.png");
 
     public static LoadableAsset<Sprite> Plaguebearer { get; } =
         new LoadableResourceAsset($"{iconPath}.Plaguebearer.png");
@@ -94,6 +97,7 @@ public static class TouRoleIcons
     public static LoadableAsset<Sprite> Warlock { get; } = new LoadableResourceAsset($"{iconPath}.Warlock.png");
     
     public static LoadableAsset<Sprite> Ambassador { get; } = new LoadableResourceAsset($"{iconPath}.Ambassador.png");
+    public static LoadableAsset<Sprite> Spellslinger { get; } = new LoadableResourceAsset($"{iconPath}.Spellslinger.png");
     public static LoadableAsset<Sprite> Traitor { get; } = new LoadableResourceAsset($"{iconPath}.Traitor.png");
 
     public static LoadableAsset<Sprite> Blackmailer { get; } = new LoadableResourceAsset($"{iconPath}.Blackmailer.png");
