@@ -22,6 +22,7 @@ public sealed class SeerRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRol
     public enum Prophecy
     {
         ImpostorKilling,
+        ImpostorPower,
         ImpostorConcealing,
         ImpostorSupport,
         NeutralEvil,
@@ -155,10 +156,10 @@ public sealed class SeerRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRol
                 if (play1.Is(RoleAlignment.ImpostorKilling) || play2.Is(RoleAlignment.ImpostorKilling))
                     matchFound = true;
                 break;
-            // case Prophecy.ImpostorPower:
-            //     if (play1.Is(RoleAlignment.ImpostorPower) || play2.Is(RoleAlignment.ImpostorPower))
-            //         matchFound = true;
-            //     break;
+            case Prophecy.ImpostorPower:
+                if (play1.Is(RoleAlignment.ImpostorPower) || play2.Is(RoleAlignment.ImpostorPower))
+                    matchFound = true;
+                break;
             case Prophecy.ImpostorSupport:
                 if (play1.Is(RoleAlignment.ImpostorSupport) || play2.Is(RoleAlignment.ImpostorSupport))
                     matchFound = true;
@@ -249,7 +250,7 @@ public static class ProphecyExtensions
         return prophecy switch
         {
             SeerRole.Prophecy.ImpostorKilling => "Impostor Killing",
-            // SeerRole.Prophecy.ImpostorPower => "Impostor Power",
+            SeerRole.Prophecy.ImpostorPower => "Impostor Power",
             SeerRole.Prophecy.ImpostorConcealing => "Impostor Concealing",
             SeerRole.Prophecy.ImpostorSupport => "Impostor Support",
             SeerRole.Prophecy.NeutralEvil => "Neutral Evil",

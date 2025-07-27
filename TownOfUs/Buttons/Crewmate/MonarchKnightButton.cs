@@ -21,7 +21,7 @@ public sealed class MonarchKnightButton : TownOfUsRoleButton<MonarchRole, Player
 
     public override PlayerControl? GetTarget()
     {
-        return PlayerControl.LocalPlayer.GetClosestLivingPlayer(false, Distance);
+        return PlayerControl.LocalPlayer.GetClosestLivingPlayer(true, Distance);
     }
 
     protected override void OnClick()

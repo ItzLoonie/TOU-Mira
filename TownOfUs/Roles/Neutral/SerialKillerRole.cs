@@ -17,7 +17,7 @@ public sealed class SerialKillerRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
 {
     public DoomableType DoomHintType => DoomableType.Relentless;
     public string RoleName => "Serial Killer";
-    public string RoleDescription => $"Kill to activate your bloodlust";
+    public string RoleDescription => $"Kill To Activate Your Bloodlust";
     public string RoleLongDescription => "Kill a player to temporarily gain access to your second kill button!";
     public Color RoleColor => TownOfUsColors.SerialKiller;
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;

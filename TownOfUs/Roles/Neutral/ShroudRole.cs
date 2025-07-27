@@ -22,7 +22,7 @@ public sealed class ShroudRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRo
     public PlayerControl? EnshroudedTarget { get; set; }
     public DoomableType DoomHintType => DoomableType.Trickster;
     public string RoleName => "Shroud";
-    public string RoleDescription => $"Make crewmates kill for you";
+    public string RoleDescription => $"Make Crewmates Kill For You";
     public string RoleLongDescription => "Enshroud crewmates to make them do your bidding";
     public Color RoleColor => TownOfUsColors.Shroud;
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;

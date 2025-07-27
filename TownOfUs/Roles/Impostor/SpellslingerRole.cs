@@ -21,11 +21,11 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
 {
     public DoomableType DoomHintType => DoomableType.Fearmonger;
     public string RoleName => "Spellslinger";
-    public string RoleDescription => "Hex everyone then detonate them all";
+    public string RoleDescription => "Hex Everyone Then Bomb Them All";
     public string RoleLongDescription => "Hex all non-Impostors to set them off in a Hex Bomb";
     public Color RoleColor => TownOfUsColors.Impostor;
     public ModdedRoleTeams Team => ModdedRoleTeams.Impostor;
-    public RoleAlignment RoleAlignment => RoleAlignment.ImpostorKilling;
+    public RoleAlignment RoleAlignment => RoleAlignment.ImpostorPower;
 
     public CustomRoleConfiguration Configuration => new(this)
     {
@@ -70,7 +70,7 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
     public string GetAdvancedDescription()
     {
         return
-            "The Spellslinger is an Impostor Killing role that can hex a player, priming them for detonation.\n\nOnce all non Impostors are hexed, the Spellslinger can detonate them all."
+            "The Spellslinger is an Impostor Power role that can hex a player, priming them for detonation.\n\nOnce all non Impostors are hexed, the Spellslinger can detonate them all."
             + MiscUtils.AppendOptionsText(GetType());
     }
 

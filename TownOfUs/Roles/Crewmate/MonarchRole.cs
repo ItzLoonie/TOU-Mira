@@ -18,11 +18,11 @@ public sealed class MonarchRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUs
     public override bool IsAffectedByComms => false;
     public DoomableType DoomHintType => DoomableType.Fearmonger;
     public string RoleName => "Monarch";
-    public string RoleDescription => "Knight players to give extra votes";
+    public string RoleDescription => "Knight Players To Give Extra Votes";
     public string RoleLongDescription => "Knight crewmates to aid in meetings, but don't knight Impostors";
     public Color RoleColor => TownOfUsColors.Monarch;
     public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
-    public RoleAlignment RoleAlignment => RoleAlignment.CrewmatePower;
+    public RoleAlignment RoleAlignment => RoleAlignment.CrewmateSupport;
 
     public CustomRoleConfiguration Configuration => new(this)
     {
@@ -38,7 +38,7 @@ public sealed class MonarchRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUs
 
     public string GetAdvancedDescription()
     {
-        return $"The Monarch is a Crewmate Power role that can knight other players, granting {(int)OptionGroupSingleton<MonarchOptions>.Instance.VotesPerKnight} vote(s) each."
+        return $"The Monarch is a Crewmate Support role that can knight other players, granting {(int)OptionGroupSingleton<MonarchOptions>.Instance.VotesPerKnight} vote(s) each."
                + MiscUtils.AppendOptionsText(GetType());
     }
 
