@@ -73,6 +73,6 @@ public enum TownOfUsRpc : uint
     Knight,
     Hex,
     Detonate,
-    Compare,
+    Vision,
     Prophecy
 }

@@ -9,9 +9,9 @@ using UnityEngine;
 
 namespace TownOfUs.Buttons.Crewmate;
 
-public sealed class Seer1CompareButton : TownOfUsRoleButton<SeerRole>
+public sealed class Seer1VisionButton : TownOfUsRoleButton<SeerRole>
 {
-    public override string Name => "Compare";
+    public override string Name => "Vision";
     public override string Keybind => Keybinds.PrimaryAction;
     public override Color TextOutlineColor => TownOfUsColors.Seer;
 
@@ -77,7 +77,7 @@ public sealed class Seer1CompareButton : TownOfUsRoleButton<SeerRole>
                     {
                         return;
                     }
-                    SeerRole.RpcCompare(PlayerControl.LocalPlayer, plr.PlayerId, plr2.PlayerId);
+                    SeerRole.RpcVision(PlayerControl.LocalPlayer, plr.PlayerId, plr2.PlayerId);
                 }
             );
             foreach (var panel in player2Menu.potentialVictims)

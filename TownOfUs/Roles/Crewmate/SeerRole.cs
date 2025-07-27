@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Text;
 using Il2CppInterop.Runtime.Attributes;
+using MiraAPI.GameOptions;
 using MiraAPI.Hud;
 using MiraAPI.Modifiers;
 using MiraAPI.Networking;
@@ -12,6 +13,7 @@ using TownOfUs.Buttons.Crewmate;
 using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Crewmate;
 using TownOfUs.Modules.Wiki;
+using TownOfUs.Options.Roles.Crewmate;
 using TownOfUs.Utilities;
 using UnityEngine;
 
@@ -21,20 +23,24 @@ public sealed class SeerRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRol
 {
     public enum Prophecy
     {
+        None = 0,
         ImpostorKilling,
         ImpostorPower,
         ImpostorConcealing,
         ImpostorSupport,
+        CommonImpostor,
+        ImpostorSpecial,
         NeutralEvil,
         NeutralBenign,
+        CommonNeutral,
         NeutralKilling
     }
-    public Prophecy CurrentProphecy { get; private set; } = Prophecy.ImpostorKilling;
+    public Prophecy CurrentProphecy { get; private set; } = Prophecy.None;
     public override bool IsAffectedByComms => false;
     public DoomableType DoomHintType => DoomableType.Fearmonger;
     public string RoleName => "Seer";
-    public string RoleDescription => "Compare Two Players For An Evil Alignment";
-    public string RoleLongDescription => "Select two players and compare them with your selected Prophecy";
+    public string RoleDescription => "Check Two Players For An Evil Alignment";
+    public string RoleLongDescription => "Select two players and see if they match your selected Prophecy";
     public Color RoleColor => TownOfUsColors.Seer;
     public ModdedRoleTeams Team => ModdedRoleTeams.Crewmate;
     public RoleAlignment RoleAlignment => RoleAlignment.CrewmateInvestigative;
@@ -57,39 +63,40 @@ public sealed class SeerRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRol
 
     public string GetAdvancedDescription()
     {
-        return "The Seer is a Crewmate Investigative role that can compare two players to see if they match their Prophecy."
+        return "The Seer is a Crewmate Investigative role that can pick two players to see if they match their Prophecy."
                + MiscUtils.AppendOptionsText(GetType());
     }
 
     [HideFromIl2Cpp]
     public List<CustomButtonWikiDescription> Abilities { get; } =
     [
-        new("Compare",
-            "Compare two players with your selected Prophecy.\nIf at least one of them is your Prophecy, you will be informed.\n\n<b>You are not told which one matches your Prophecy.</b>",
+        new("Vision",
+            "Have a vision of two players with your selected Prophecy.\nIf at least one of them is your Prophecy, you will be informed.\n\n<b>You are not told which one matches your Prophecy.</b>",
             TouCrewAssets.SeerSprite),
         new("Change Prophecy",
             "Cycle your prophecy between all Impostor and Neutral alignments.",
             TouCrewAssets.ProphecySprite)
     ];
 
-    [MethodRpc((uint)TownOfUsRpc.Compare, SendImmediately = true)]
-    public static void RpcCompare(PlayerControl seer, byte player1, byte player2)
+    [MethodRpc((uint)TownOfUsRpc.Vision, SendImmediately = true)]
+    public static void RpcVision(PlayerControl seer, byte player1, byte player2)
     {
         if (seer.Data.Role is not SeerRole seerRole)
         {
-            Logger<TownOfUsPlugin>.Error("RpcCompare - Invalid Seer");
+            Logger<TownOfUsPlugin>.Error("RpcVision - Invalid Seer");
             return;
         }
 
         var t1 = GetTarget(player1);
         var t2 = GetTarget(player2);
+        var prophecy = seerRole.CurrentProphecy;
 
         if (t1 == null || t2 == null)
         {
             if (seer.AmOwner)
             {
                 Coroutines.Start(MiscUtils.CoFlash(Color.red));
-                ShowNotification($"<b>You need to pick a second target.</b>");
+                ShowNotification($"<b>You need to pick two targets.</b>");
             }
             return;
         }
@@ -97,10 +104,17 @@ public sealed class SeerRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRol
         if (t1 == seer || t2 == seer)
         {
             Coroutines.Start(MiscUtils.CoFlash(Color.red));
-            ShowNotification($"<b>You can't compare yourself!</b>");
+            ShowNotification($"<b>You can't use yourself in a vision!</b>");
             return;
         }
 
+        if (prophecy == Prophecy.None)
+        {
+            Coroutines.Start(MiscUtils.CoFlash(Color.red));
+            ShowNotification($"<b>You haven't set a Prophecy!</b>");
+            return;
+        }
+        
         var play1 = MiscUtils.PlayerById(player1)!;
         var play2 = MiscUtils.PlayerById(player2)!;
 
@@ -130,12 +144,11 @@ public sealed class SeerRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRol
 
         if (seer.AmOwner)
         {
-            var button = CustomButtonSingleton<Seer1CompareButton>.Instance;
+            var button = CustomButtonSingleton<Seer1VisionButton>.Instance;
             button.ResetCooldownAndOrEffect();
         }
 
 
-        var prophecy = seerRole.CurrentProphecy;
         var playerA = play1.CachedPlayerData.PlayerName;
         var playerB = play2.CachedPlayerData.PlayerName;
 
@@ -180,14 +193,31 @@ public sealed class SeerRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRol
                 if (play1.Is(RoleAlignment.NeutralKilling) || play2.Is(RoleAlignment.NeutralKilling))
                     matchFound = true;
                 break;
+            case Prophecy.CommonImpostor:
+                if (play1.Is(RoleAlignment.ImpostorSupport) || play2.Is(RoleAlignment.ImpostorSupport) ||
+                    play1.Is(RoleAlignment.ImpostorConcealing) || play2.Is(RoleAlignment.ImpostorConcealing))
+                    matchFound = true;
+                break;
+            case Prophecy.ImpostorSpecial:
+                if (play1.Is(RoleAlignment.ImpostorPower) || play2.Is(RoleAlignment.ImpostorPower) ||
+                    play1.Is(RoleAlignment.ImpostorKilling) || play2.Is(RoleAlignment.ImpostorKilling))
+                    matchFound = true;
+                break;
+            case Prophecy.CommonNeutral:
+                if (play1.Is(RoleAlignment.NeutralEvil) || play2.Is(RoleAlignment.NeutralEvil) ||
+                    play1.Is(RoleAlignment.NeutralBenign) || play2.Is(RoleAlignment.NeutralBenign))
+                    matchFound = true;
+                break;
         }
 
         if (matchFound)
         {
+            Coroutines.Start(MiscUtils.CoFlash(Palette.ImpostorRed));
             ShowNotification($"<b>{Palette.ImpostorRed.ToTextColor()}At least one of {playerA} and {playerB} matches your {prophecy.GetProphecyString()} prophecy!</color></b>");
         }
         else
         {
+            Coroutines.Start(MiscUtils.CoFlash(Palette.CrewmateBlue));
             ShowNotification($"<b>{Palette.CrewmateBlue.ToTextColor()}Neither {playerA} nor {playerB} matches your {prophecy.GetProphecyString()} prophecy!</color></b>");
         }
 
@@ -226,21 +256,44 @@ public sealed class SeerRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRol
         seerRole.ChangeProphecy();
     }
 
-    public void ChangeProphecy()
-    {
-        var values = (Prophecy[])Enum.GetValues(typeof(Prophecy));
-        int currentIndex = Array.IndexOf(values, CurrentProphecy);
-        int nextIndex = (currentIndex + 1) % values.Length;
-        CurrentProphecy = values[nextIndex];
+public void ChangeProphecy()
+{
+    var values = ((Prophecy[])Enum.GetValues(typeof(Prophecy)))
+        .Where(p =>
+            p != Prophecy.None &&
 
-        if (PlayerControl.LocalPlayer.AmOwner)
-        {
-            var notif1 = Helpers.CreateAndShowNotification(
-                $"<b>Prophecy has been changed to {CurrentProphecy.GetProphecyString()}</color></b>",
-                Color.white, new Vector3(0f, 1f, -20f), spr: TouRoleIcons.Seer.LoadAsset());
-            notif1.Text.SetOutlineThickness(0.35f);
-        }
+            (OptionGroupSingleton<SeerOptions>.Instance.UseCommonImpostor
+                ? p != Prophecy.ImpostorKilling &&
+                  p != Prophecy.ImpostorPower &&
+                  p != Prophecy.ImpostorSupport &&
+                  p != Prophecy.ImpostorConcealing
+                : p != Prophecy.CommonImpostor) &&
+
+            (OptionGroupSingleton<SeerOptions>.Instance.UseSpecialImpostor
+                ? p != Prophecy.ImpostorKilling &&
+                  p != Prophecy.ImpostorPower
+                : p != Prophecy.ImpostorSpecial) &&
+
+            (OptionGroupSingleton<SeerOptions>.Instance.UseCommonNeutral
+                ? p != Prophecy.NeutralEvil &&
+                  p != Prophecy.NeutralBenign
+                : p != Prophecy.CommonNeutral)
+        )
+        .ToArray();
+
+    int currentIndex = Array.IndexOf(values, CurrentProphecy);
+    int nextIndex = (currentIndex + 1) % values.Length;
+    CurrentProphecy = values[nextIndex];
+
+    if (PlayerControl.LocalPlayer.AmOwner)
+    {
+        var notif1 = Helpers.CreateAndShowNotification(
+            $"<b>Prophecy has been changed to {CurrentProphecy.GetProphecyString()}</color></b>",
+            Color.white, new Vector3(0f, 1f, -20f), spr: TouRoleIcons.Seer.LoadAsset());
+        notif1.Text.SetOutlineThickness(0.35f);
     }
+}
+
 }
 
 public static class ProphecyExtensions
@@ -256,7 +309,10 @@ public static class ProphecyExtensions
             SeerRole.Prophecy.NeutralEvil => "Neutral Evil",
             SeerRole.Prophecy.NeutralBenign => "Neutral Benign",
             SeerRole.Prophecy.NeutralKilling => "Neutral Killing",
-            _ => "Unknown"
+            SeerRole.Prophecy.CommonNeutral => "Common Neutral",
+            SeerRole.Prophecy.CommonImpostor => "Common Impostor",
+            SeerRole.Prophecy.ImpostorSpecial => "Impostor Special",
+            _ => "None"
         };
     }
 }
