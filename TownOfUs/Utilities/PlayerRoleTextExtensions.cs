@@ -1,5 +1,6 @@
 ﻿using MiraAPI.GameOptions;
 using MiraAPI.Modifiers;
+using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Crewmate;
 using TownOfUs.Modifiers.Game.Alliance;
 using TownOfUs.Modifiers.Impostor;
@@ -212,6 +213,9 @@ public static class PlayerRoleTextExtensions
 
         if (player.HasModifier<SpellslingerHexedModifier>() && (PlayerControl.LocalPlayer.HasDied() && genOpt.TheDeadKnow && !hidden || PlayerControl.LocalPlayer.IsImpostor()))
             name += $" {TownOfUsColors.Impostor.ToTextColor()}乂</color>";
+
+        if (player.HasModifier<KnightedModifier>() && (PlayerControl.LocalPlayer.HasDied() && genOpt.TheDeadKnow && !hidden || PlayerControl.LocalPlayer.IsRole<MonarchRole>()))
+            name += $" {TownOfUsColors.Monarch.ToTextColor()}+</color>";
 
         return name;
     }
