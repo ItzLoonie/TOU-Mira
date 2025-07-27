@@ -72,7 +72,7 @@ public enum TownOfUsRpc : uint
     RetrainImpostor,
     Knight,
     Hex,
-    Detonate,
+    HexBomb,
     Vision,
     Prophecy
 }

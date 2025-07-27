@@ -18,10 +18,10 @@ public sealed class SpellslingerHexButton : TownOfUsRoleButton<SpellslingerRole,
     public override int MaxUses => (int)OptionGroupSingleton<SpellslingerOptions>.Instance.MaxHexes;
     public override LoadableAsset<Sprite> Sprite => TouImpAssets.HexButtonSprite;
 
-    public override bool Enabled(RoleBehaviour? role)
-    {
-        return base.Enabled(role) && !SpellslingerRole.EveryoneHexed();
-    }
+    // public override bool Enabled(RoleBehaviour? role)
+    // {
+    //     return base.Enabled(role) && !SpellslingerRole.EveryoneHexed();
+    // }
 
     public override PlayerControl? GetTarget()
     {

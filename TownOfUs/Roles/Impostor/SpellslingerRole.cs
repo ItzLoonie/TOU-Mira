@@ -19,6 +19,20 @@ namespace TownOfUs.Roles.Impostor;
 
 public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
+    private bool _bombed;
+
+    public void FixedUpdate()
+    {
+        if (_bombed || Player == null || Player.Data?.Role is not SpellslingerRole || Player.HasDied())
+            return;
+
+        if (!EveryoneHexed())
+            return;
+
+        _bombed = true;
+        RpcHexBomb(Player);
+    }
+
     public DoomableType DoomHintType => DoomableType.Fearmonger;
     public string RoleName => "Spellslinger";
     public string RoleDescription => "Hex Everyone Then Bomb Them All";
@@ -61,7 +75,7 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
         sb.Append(TownOfUsPlugin.Culture, $"\n\n<b>Players Left to Hex: {unhexedNonImpostors.Count}</b>");
         // foreach (var player in unhexedNonImpostors)
         // {
-        //     sb.Append(TownOfUsPlugin.Culture, $"\n• {player.Data.PlayerName}");
+        //     sb.Append(TownOfUsPlugin.Culture, $"\n{player.Data.PlayerName}");
         // }
 
         return sb;
@@ -70,7 +84,7 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
     public string GetAdvancedDescription()
     {
         return
-            "The Spellslinger is an Impostor Power role that can hex a player, priming them for detonation.\n\nOnce all non Impostors are hexed, the Spellslinger can detonate them all."
+            "The Spellslinger is an Impostor Power role that can hex a player, priming them for detonation.\n\nOnce all non Impostors are hexed, all hexed players will die."
             + MiscUtils.AppendOptionsText(GetType());
     }
 
@@ -83,9 +97,9 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
             TouImpAssets.HexButtonSprite),
 
         new CustomButtonWikiDescription(
-            "Detonate",
-            $"Kill all hexed players.\n\nDetonate may only be used if everyone is hexed.",
-            TouImpAssets.DetonateButtonSprite)
+            "Hex Bomb (Passive)",
+            $"Kill all hexed players.\nHex Bomb will activate automatically once all non Impostors are hexed.",
+            TouImpAssets.HexButtonSprite)
     ];
 
     [MethodRpc((uint)TownOfUsRpc.Hex, SendImmediately = true)]
@@ -124,12 +138,12 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
 
     }
 
-    [MethodRpc((uint)TownOfUsRpc.Detonate, SendImmediately = true)]
-    public static void RpcDetonate(PlayerControl player)
+    [MethodRpc((uint)TownOfUsRpc.HexBomb, SendImmediately = true)]
+    public static void RpcHexBomb(PlayerControl player)
     {
         if (player.Data.Role is not SpellslingerRole)
         {
-            Logger<TownOfUsPlugin>.Error("RpcDetonate - Invalid Spellslinger");
+            Logger<TownOfUsPlugin>.Error("RpcHexBomb - Invalid Spellslinger");
             return;
         }
 
@@ -170,7 +184,7 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
         if (player.AmOwner)
         {
             var notif = Helpers.CreateAndShowNotification(
-                $"<b>All {hexed.Count} hexed players detonated!</b>", 
+                $"<b>All {hexed.Count} hexed players killed in your Hex Bomb!</b>", 
                 Color.white, new Vector3(0f, 1f, -20f), 
                 spr: TouRoleIcons.Spellslinger.LoadAsset());
             notif.Text.SetOutlineThickness(0.4f);

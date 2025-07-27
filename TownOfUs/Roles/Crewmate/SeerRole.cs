@@ -193,6 +193,10 @@ public sealed class SeerRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRol
                 if (play1.Is(RoleAlignment.NeutralKilling) || play2.Is(RoleAlignment.NeutralKilling))
                     matchFound = true;
                 break;
+            // case Prophecy.NeutralOutlier:
+            //     if (play1.Is(RoleAlignment.NeutralOutlier) || play2.Is(RoleAlignment.NeutralOutlier))
+            //         matchFound = true;
+            //     break;
             case Prophecy.CommonImpostor:
                 if (play1.Is(RoleAlignment.ImpostorSupport) || play2.Is(RoleAlignment.ImpostorSupport) ||
                     play1.Is(RoleAlignment.ImpostorConcealing) || play2.Is(RoleAlignment.ImpostorConcealing))
