@@ -76,4 +76,5 @@ public enum TownOfUsRpc : uint
     Vision,
     Prophecy,
     Compare,
+    AmbushPlayer
 }
