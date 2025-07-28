@@ -24,4 +24,7 @@ public sealed class MonarchOptions : AbstractOptionGroup<MonarchRole>
     [ModdedToggleOption("Inform Monarch If a Knight Dies")]
     public bool InformWhenKnightDies { get; set; } = true;
 
+    [ModdedToggleOption("Crew Knights Grant Kill Immunity")]
+    public bool CrewKnightsGrantKillImmunity { get; set; } = true;
+
 }
