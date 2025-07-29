@@ -169,7 +169,7 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
         {
             player.RpcAddModifier<IndirectAttackerModifier>(true);
             player.RpcCustomMurder(target, teleportMurderer: false, playKillSound: false);
-            // DeathHandlerModifier.RpcUpdateDeathHandler(target, "Hexed", DeathEventHandlers.CurrentRound, DeathHandlerOverride.SetTrue, $"By {player.Data.PlayerName}", lockInfo: DeathHandlerOverride.SetTrue);
+            // DeathHandlerModifier.RpcUpdateDeathHandler(target, "Disintegrated", DeathEventHandlers.CurrentRound, DeathHandlerOverride.SetTrue, $"By {player.Data.PlayerName}", lockInfo: DeathHandlerOverride.SetTrue);
             target.RemoveModifier<SpellslingerHexedModifier>();
 
             if (player.AmOwner && target == player)
@@ -184,7 +184,7 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
         if (player.AmOwner)
         {
             var notif = Helpers.CreateAndShowNotification(
-                $"<b>All {hexed.Count} hexed players killed in your Hex Bomb!</b>", 
+                $"<b>Disintegrated {hexed.Count} hexed players!</b>", 
                 Color.white, new Vector3(0f, 1f, -20f), 
                 spr: TouRoleIcons.Spellslinger.LoadAsset());
             notif.Text.SetOutlineThickness(0.4f);

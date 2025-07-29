@@ -95,6 +95,9 @@ public static class TouCrewAssets
     public static LoadableAsset<Sprite> KnightButtonSprite { get; } =
         new LoadableResourceAsset($"{ButtonPath}.KnightButton.png");
 
+    public static LoadableAsset<Sprite> RoleblockButtonSprite { get; } =
+        new LoadableResourceAsset($"{ButtonPath}.RoleblockButton.png");
+
     public static LoadableAsset<Sprite> EngineerRoleBanner { get; } =
         new LoadableResourceAsset($"{BannerPath}.Engineer.png");
 }

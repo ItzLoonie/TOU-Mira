@@ -76,5 +76,7 @@ public enum TownOfUsRpc : uint
     Vision,
     Prophecy,
     Compare,
+    BarkeeperRoleblock,
+    BootleggerRoleblock,
     AmbushPlayer
 }

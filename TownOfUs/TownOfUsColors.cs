@@ -9,9 +9,12 @@ public static class TownOfUsColors
     // Crew Colors
     public static Color Monarch => UseBasic ? Palette.CrewmateBlue : new Color(0.38f, 0.26f, 0.78f, 1f);
     public static Color Psychic => UseBasic ? Palette.CrewmateBlue : new Color(0.4353f, 0.4118f, 0.549f, 1f);
+    public static Color Barkeeper => UseBasic ? Palette.CrewmateBlue : new Color(0.8902f, 0.8314f, 0.4667f, 1f);
     // Neutral Colors
     public static Color SerialKiller => new(0.1137f, 0.3020f, 0.9882f, 1f);
     public static Color Shroud => new Color(0.4f, 0.6f, 1f, 1f);
+    // Modifiers Colors
+    public static Color Drunk => new Color(0.46f, 0.5f, 0f, 1f);
 
 
 

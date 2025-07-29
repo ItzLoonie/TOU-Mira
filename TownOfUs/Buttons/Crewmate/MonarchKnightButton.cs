@@ -6,7 +6,7 @@ using TownOfUs.Roles.Crewmate;
 using TownOfUs.Utilities;
 using UnityEngine;
 
-namespace TownOfUs.Buttons.Neutral;
+namespace TownOfUs.Buttons.Crewmate;
 
 public sealed class MonarchKnightButton : TownOfUsRoleButton<MonarchRole, PlayerControl>
 {
@@ -49,8 +49,6 @@ public override void OnEffectEnd()
     OverrideName("Knight");
 
     if (_knightedTarget == null) return;
-
-    PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.LocalPlayer.GetKillCooldown());
 
     MonarchRole.RpcKnight(PlayerControl.LocalPlayer, _knightedTarget);
     _knightedTarget = null;
