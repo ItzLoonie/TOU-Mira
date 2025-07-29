@@ -11,8 +11,6 @@ using MiraAPI.Utilities;
 using Reactor.Networking.Attributes;
 using Reactor.Utilities;
 using Reactor.Utilities.Extensions;
-using TownOfUs.Events;
-using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Crewmate;
 using TownOfUs.Modifiers.Neutral;
 using TownOfUs.Modules;
@@ -386,7 +384,6 @@ public sealed class DoomsayerRole(IntPtr cppPtr)
                     {
                         Player.RpcCustomMurder(victim, createDeadBody: false, teleportMurderer: false, showKillAnim: false,
                             playKillSound: false);
-                        DeathHandlerModifier.RpcUpdateDeathHandler(victim, "Doomed", DeathEventHandlers.CurrentRound, DeathHandlerOverride.SetFalse, $"By {Player.Data.PlayerName}", lockInfo: DeathHandlerOverride.SetTrue);
                     }
 
                 }
@@ -403,7 +400,6 @@ public sealed class DoomsayerRole(IntPtr cppPtr)
                             Player.RpcCustomMurder(victim2, createDeadBody: false, teleportMurderer: false,
                                 showKillAnim: false,
                                 playKillSound: false);
-                            DeathHandlerModifier.RpcUpdateDeathHandler(victim2, "Doomed", DeathEventHandlers.CurrentRound, DeathHandlerOverride.SetFalse, $"By {Player.Data.PlayerName}", lockInfo: DeathHandlerOverride.SetTrue);
                         }
                     }
                 }
