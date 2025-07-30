@@ -30,9 +30,9 @@ public static class DeadlyQuotaEvents
 
         deadlyQuota.KillCount++;
 
-        if (OptionGroupSingleton<DeadlyQuotaOptions>.Instance.KillQuota > deadlyQuota.KillCount)
+        if (deadlyQuota.KillQuota > deadlyQuota.KillCount)
         {
-            var remaining = OptionGroupSingleton<DeadlyQuotaOptions>.Instance.KillQuota - deadlyQuota.KillCount;
+            var remaining = deadlyQuota.KillQuota - deadlyQuota.KillCount;
 
             var notif1 = Helpers.CreateAndShowNotification(
                 $"<b>You need {remaining} more {(remaining == 1 ? "kill" : "kills")} to complete your quota!</b>",
@@ -44,7 +44,7 @@ public static class DeadlyQuotaEvents
             notif1.Text.SetOutlineThickness(0.4f);
         }
 
-        if (OptionGroupSingleton<DeadlyQuotaOptions>.Instance.KillQuota == deadlyQuota.KillCount)
+        if (deadlyQuota.KillQuota == deadlyQuota.KillCount)
         {
             if (!OptionGroupSingleton<DeadlyQuotaOptions>.Instance.QuotaShield)
             {
@@ -59,7 +59,7 @@ public static class DeadlyQuotaEvents
             else
             {
                 var notif3 = Helpers.CreateAndShowNotification(
-                $"<b>You have completed your quota! You have lost your temporary shield.</b>",
+                $"<b>You have completed your quota! You have lost your temporarily shield.</b>",
                 Color.white,
                 new Vector3(0f, 1f, -20f),
                 spr: TouModifierIcons.DeadlyQuota.LoadAsset());
@@ -69,7 +69,7 @@ public static class DeadlyQuotaEvents
             }
         }
 
-        if (deadlyQuota.KillCount >= OptionGroupSingleton<DeadlyQuotaOptions>.Instance.KillQuota) deadlyQuota.KillCount = (int)OptionGroupSingleton<DeadlyQuotaOptions>.Instance.KillQuota;
+        if (deadlyQuota.KillCount >= deadlyQuota.KillQuota) deadlyQuota.KillCount = deadlyQuota.KillQuota;
 
 
     }
@@ -131,7 +131,7 @@ public static class DeadlyQuotaEvents
         if (MeetingHud.Instance || ExileController.Instance)
             return false;
 
-        if (OptionGroupSingleton<DeadlyQuotaOptions>.Instance.KillQuota <= deadlyQuota.KillCount)
+        if (deadlyQuota.KillQuota <= deadlyQuota.KillCount)
             return false;
 
         @event?.Cancel();
