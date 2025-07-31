@@ -18,7 +18,7 @@ public sealed class DeadlyQuotaModifier : TouGameModifier, IWikiDiscoverable
     public override Color FreeplayFileColor => new Color32(255, 25, 25, 255);
 
     public override LoadableAsset<Sprite>? ModifierIcon => TouModifierIcons.DeadlyQuota;
-    public override ModifierFaction FactionType => ModifierFaction.ImpostorPassive;
+    public override ModifierFaction FactionType => ModifierFaction.ImpostorHarmful;
 
     public string GetAdvancedDescription()
     {

@@ -15,7 +15,7 @@ public static class TownOfUsColors
     public static Color Shroud => new Color(0.4f, 0.6f, 1f, 1f);
     // Modifiers Colors
     public static Color Drunk => new Color(0.46f, 0.5f, 0f, 1f);
-
+    public static Color DoubleShot => new Color32(100, 63, 213, 255);
 
 
     // TOU Mira Colors

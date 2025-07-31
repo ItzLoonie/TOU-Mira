@@ -12,7 +12,7 @@ public sealed class DrunkModifier : UniversalGameModifier, IWikiDiscoverable, IV
     public override string ModifierName => "Drunk";
     public override LoadableAsset<Sprite>? ModifierIcon => TouModifierIcons.Drunk;
 
-    public override ModifierFaction FactionType => ModifierFaction.UniversalPassive;
+    public override ModifierFaction FactionType => ModifierFaction.UniversalHarmful;
     public override Color FreeplayFileColor => new Color32(180, 180, 180, 255);
 
     public VisualAppearance GetVisualAppearance()

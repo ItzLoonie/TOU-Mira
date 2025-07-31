@@ -13,6 +13,15 @@ public sealed class ImpostorModifierOptions : AbstractOptionGroup
     public override bool ShowInModifiersMenu => true;
     public override uint GroupPriority => 3;
 
+    [ModdedNumberOption("Circumvent Amount", 0, 5)]
+    public float CircumventAmount { get; set; } = 0;
+
+    public ModdedNumberOption CircumventChance { get; } =
+        new("Circumvent Chance", 50f, 0, 100f, 10f, MiraNumberSuffixes.Percent)
+        {
+            Visible = () => OptionGroupSingleton<ImpostorModifierOptions>.Instance.CircumventAmount > 0
+        };
+
     [ModdedNumberOption("Deadly Quota Amount", 0, 5)]
     public float DeadlyQuotaAmount { get; set; } = 0;
 
