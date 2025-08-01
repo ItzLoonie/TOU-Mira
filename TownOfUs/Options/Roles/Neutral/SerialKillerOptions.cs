@@ -7,7 +7,7 @@ namespace TownOfUs.Options.Roles.Neutral;
 
 public sealed class SerialKillerOptions : AbstractOptionGroup<SerialKillerRole>
 {
-    public override string GroupName => "Serial Killer";
+    public override string GroupName => TouLocale.Get(TouNames.SerialKiller, "Serial Killer");
 
     [ModdedNumberOption("Kill Cooldown", 10f, 60f, 2.5f, MiraNumberSuffixes.Seconds)]
     public float KillCooldown { get; set; } = 25f;

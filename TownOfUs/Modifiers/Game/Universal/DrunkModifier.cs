@@ -1,6 +1,5 @@
 using MiraAPI.GameOptions;
 using MiraAPI.Utilities.Assets;
-using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Modifiers;
 using TownOfUs.Utilities.Appearances;
 using UnityEngine;
@@ -9,7 +8,7 @@ namespace TownOfUs.Modifiers.Game.Universal;
 
 public sealed class DrunkModifier : UniversalGameModifier, IWikiDiscoverable, IVisualAppearance
 {
-    public override string ModifierName => "Drunk";
+    public override string ModifierName => TouLocale.Get(TouNames.Drunk, "Drunk");
     public override LoadableAsset<Sprite>? ModifierIcon => TouModifierIcons.Drunk;
 
     public override ModifierFaction FactionType => ModifierFaction.UniversalHarmful;

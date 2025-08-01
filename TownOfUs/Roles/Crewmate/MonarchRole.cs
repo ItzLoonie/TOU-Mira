@@ -6,7 +6,6 @@ using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using Reactor.Networking.Attributes;
 using TownOfUs.Modifiers;
-using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Modifiers;
 using TownOfUs.Options.Roles.Crewmate;
 using TownOfUs.Utilities;
@@ -20,7 +19,7 @@ public sealed class MonarchRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUs
 {
     public override bool IsAffectedByComms => false;
     public DoomableType DoomHintType => DoomableType.Fearmonger;
-    public string RoleName => "Monarch";
+    public string RoleName => TouLocale.Get(TouNames.Monarch, "Monarch");
     public string RoleDescription => "Knight Players To Give Extra Votes";
     public string RoleLongDescription => "Knight crewmates to aid in meetings, but don't knight Impostors";
     public Color RoleColor => TownOfUsColors.Monarch;
@@ -64,7 +63,7 @@ public sealed class MonarchRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUs
     public string GetAdvancedDescription()
     {
         var votes = (int)OptionGroupSingleton<MonarchOptions>.Instance.VotesPerKnight;
-        var desc = $"The Monarch is a Crewmate Power role that can knight other players, granting {votes} vote(s) each.";
+        var desc = $"The {RoleName} is a Crewmate Power role that can knight other players, granting {votes} vote(s) each.";
 
         if (OptionGroupSingleton<MonarchOptions>.Instance.CrewKnightsGrantKillImmunity)
             desc += "\n\nIf a knighted crewmate is alive, the Monarch is immune to kills. Evil knights do not grant said immunity.";

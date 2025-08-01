@@ -2,7 +2,6 @@ using System.Text;
 using Il2CppInterop.Runtime.Attributes;
 using MiraAPI.Roles;
 using Reactor.Networking.Attributes;
-using TownOfUs.Modules.Wiki;
 using TownOfUs.Utilities;
 using UnityEngine;
 using MiraAPI.Modifiers;
@@ -34,7 +33,7 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
     }
 
     public DoomableType DoomHintType => DoomableType.Fearmonger;
-    public string RoleName => "Spellslinger";
+    public string RoleName => TouLocale.Get(TouNames.Spellslinger, "Spellslinger");
     public string RoleDescription => "Hex Everyone Then Bomb Them All";
     public string RoleLongDescription => "Hex all non-Impostors to set them off in a Hex Bomb";
     public Color RoleColor => TownOfUsColors.Impostor;
@@ -84,7 +83,7 @@ public sealed class SpellslingerRole(IntPtr cppPtr) : ImpostorRole(cppPtr), ITow
     public string GetAdvancedDescription()
     {
         return
-            "The Spellslinger is an Impostor Power role that can hex a player, priming them for detonation.\n\nOnce all non Impostors are hexed, all hexed players will die."
+            $"The {RoleName} is an Impostor Power role that can hex a player, priming them for detonation.\n\nOnce all non Impostors are hexed, all hexed players will die."
             + MiscUtils.AppendOptionsText(GetType());
     }
 

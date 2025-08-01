@@ -7,7 +7,7 @@ namespace TownOfUs.Options.Roles.Crewmate;
 
 public sealed class PsychicOptions : AbstractOptionGroup<PsychicRole>
 {
-    public override string GroupName => "Psychic";
+    public override string GroupName => TouLocale.Get(TouNames.Psychic, "Psychic");
 
     [ModdedNumberOption("Vision Cooldown", 10f, 60f, 2.5f, MiraNumberSuffixes.Seconds)]
     public float PsychicCooldown { get; set; } = 25f;

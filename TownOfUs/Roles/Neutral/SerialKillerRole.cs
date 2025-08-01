@@ -6,7 +6,6 @@ using MiraAPI.GameOptions;
 using MiraAPI.Patches.Stubs;
 using MiraAPI.Roles;
 using MiraAPI.Utilities;
-using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
@@ -16,7 +15,7 @@ namespace TownOfUs.Roles.Neutral;
 public sealed class SerialKillerRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRole, IWikiDiscoverable, IDoomable
 {
     public DoomableType DoomHintType => DoomableType.Relentless;
-    public string RoleName => "Serial Killer";
+    public string RoleName => TouLocale.Get(TouNames.SerialKiller, "Serial Killer");
     public string RoleDescription => $"Kill To Activate Your Bloodlust";
     public string RoleLongDescription => "Kill a player to temporarily gain access to your second kill button!";
     public Color RoleColor => TownOfUsColors.SerialKiller;
@@ -69,7 +68,7 @@ public sealed class SerialKillerRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITown
     public string GetAdvancedDescription()
     {
         return
-            $"The Serial Killer is a Neutral Killing role that wins by being the last killer alive. They have a second kill button they can use once for a short amount of time after killing someone with their primary kill button." +
+            $"The {RoleName} is a Neutral Killing role that wins by being the last killer alive. They have a second kill button they can use once for a short amount of time after killing someone with their primary kill button." +
             MiscUtils.AppendOptionsText(GetType());
     }
 

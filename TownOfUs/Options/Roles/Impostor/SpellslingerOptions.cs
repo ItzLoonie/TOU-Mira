@@ -7,7 +7,7 @@ namespace TownOfUs.Options.Roles.Impostor;
 
 public sealed class SpellslingerOptions : AbstractOptionGroup<SpellslingerRole>
 {
-    public override string GroupName => "Spellslinger";
+    public override string GroupName => TouLocale.Get(TouNames.Spellslinger, "Spellslinger");
 
     [ModdedNumberOption("Hex Cooldown", 10f, 60f, 2.5f, MiraNumberSuffixes.Seconds)]
     public float HexCooldown { get; set; } = 25f;

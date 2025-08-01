@@ -1,6 +1,5 @@
 using MiraAPI.GameOptions;
 using MiraAPI.Utilities.Assets;
-using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Modifiers;
 using TownOfUs.Options.Roles.Impostor;
 using TownOfUs.Roles.Impostor;
@@ -11,7 +10,7 @@ namespace TownOfUs.Modifiers.Game.Universal;
 
 public sealed class CircumventModifier : TouGameModifier, IWikiDiscoverable
 {
-    public override string ModifierName => "Circumvent";
+    public override string ModifierName => TouLocale.Get(TouNames.Circumvent, "Circumvent");
     public override string IntroInfo => $"You also lack the ability to travel through vents.";
     public override LoadableAsset<Sprite>? ModifierIcon => TouModifierIcons.Circumvent;
 
@@ -50,9 +49,9 @@ public sealed class CircumventModifier : TouGameModifier, IWikiDiscoverable
             (role is UndertakerRole && !OptionGroupSingleton<UndertakerOptions>.Instance.CanVent) ||
             (role is EscapistRole && !OptionGroupSingleton<EscapistOptions>.Instance.CanVent) ||
             (role is GrenadierRole && !OptionGroupSingleton<GrenadierOptions>.Instance.CanVent) ||
-            (role is MorphlingRole && !OptionGroupSingleton<MorphlingOptions>.Instance.MorphlingVent) ||
-            (role is BomberRole && !OptionGroupSingleton<BomberOptions>.Instance.BomberVent) ||
-            (role is AmbusherRole && !OptionGroupSingleton<AmbusherOptions>.Instance.AmbusherVent))
+            (role is MorphlingRole && !OptionGroupSingleton<MorphlingOptions>.Instance.CanVent) ||
+            (role is BomberRole && !OptionGroupSingleton<BomberOptions>.Instance.CanVent) ||
+            (role is AmbusherRole && !OptionGroupSingleton<AmbusherOptions>.Instance.CanVent))
         {
             isValid = false;
         }

@@ -7,7 +7,7 @@ namespace TownOfUs.Options.Roles.Neutral;
 
 public sealed class ShroudOptions : AbstractOptionGroup<ShroudRole>
 {
-    public override string GroupName => "Shroud";
+    public override string GroupName => TouLocale.Get(TouNames.Shroud, "Shroud");
 
     [ModdedNumberOption("Kill Cooldown", 10f, 60f, 2.5f, MiraNumberSuffixes.Seconds)]
     public float KillCooldown { get; set; } = 25f;

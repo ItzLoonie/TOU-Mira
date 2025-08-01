@@ -12,7 +12,6 @@ using Reactor.Utilities;
 using TownOfUs.Buttons.Crewmate;
 using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Crewmate;
-using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Roles.Crewmate;
 using TownOfUs.Utilities;
 using UnityEngine;
@@ -38,7 +37,7 @@ public sealed class PsychicRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUs
     public Prophecy CurrentProphecy { get; private set; } = Prophecy.None;
     public override bool IsAffectedByComms => false;
     public DoomableType DoomHintType => DoomableType.Fearmonger;
-    public string RoleName => "Psychic";
+    public string RoleName => TouLocale.Get(TouNames.Psychic, "Psychic");
     public string RoleDescription => "Check Two Players For An Evil Alignment";
     public string RoleLongDescription => "Select two players and see if they match your selected Prophecy";
     public Color RoleColor => TownOfUsColors.Psychic;
@@ -63,7 +62,7 @@ public sealed class PsychicRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUs
 
     public string GetAdvancedDescription()
     {
-        return "The Psychic is a Crewmate Investigative role that can pick two players to see if they match their Prophecy."
+        return $"The {RoleName} is a Crewmate Investigative role that can pick two players to see if they match their Prophecy."
                + MiscUtils.AppendOptionsText(GetType());
     }
 

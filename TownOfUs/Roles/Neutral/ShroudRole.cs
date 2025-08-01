@@ -10,7 +10,6 @@ using MiraAPI.Roles;
 using MiraAPI.Utilities;
 using TownOfUs.Events;
 using TownOfUs.Modifiers;
-using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Roles.Neutral;
 using TownOfUs.Utilities;
 using UnityEngine;
@@ -21,7 +20,7 @@ public sealed class ShroudRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRo
 {
     public PlayerControl? EnshroudedTarget { get; set; }
     public DoomableType DoomHintType => DoomableType.Trickster;
-    public string RoleName => "Shroud";
+    public string RoleName => TouLocale.Get(TouNames.Shroud, "Shroud");
     public string RoleDescription => $"Make Crewmates Kill For You";
     public string RoleLongDescription => "Enshroud crewmates to make them do your bidding";
     public Color RoleColor => TownOfUsColors.Shroud;
@@ -76,7 +75,7 @@ public sealed class ShroudRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUsRo
     public string GetAdvancedDescription()
     {
         return
-            $"The Shroud is a Neutral Killing role that wins by being the last killer alive. They can enshroud a player then make them kill the closest player to them within kill range." +
+            $"The {RoleName} is a Neutral Killing role that wins by being the last killer alive. They can enshroud a player then make them kill the closest player to them within kill range." +
             MiscUtils.AppendOptionsText(GetType());
     }
 

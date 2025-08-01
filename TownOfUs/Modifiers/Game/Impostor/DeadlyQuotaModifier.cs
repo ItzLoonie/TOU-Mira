@@ -1,7 +1,6 @@
 using MiraAPI.GameOptions;
 using MiraAPI.Utilities;
 using MiraAPI.Utilities.Assets;
-using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Modifiers;
 using TownOfUs.Options.Modifiers.Impostor;
 using TownOfUs.Utilities;
@@ -13,7 +12,7 @@ public sealed class DeadlyQuotaModifier : TouGameModifier, IWikiDiscoverable
 {
     public int KillCount { get; set; }
     public int KillQuota { get; private set; }
-    public override string ModifierName => "Deadly Quota";
+    public override string ModifierName => TouLocale.Get(TouNames.DeadlyQuota, "Deadly Quota");
     public override string IntroInfo => $"You also lose if you do not kill at least {KillQuota} {(KillQuota == 1 ? "person" : "people")}.";
     public override Color FreeplayFileColor => new Color32(255, 25, 25, 255);
 
