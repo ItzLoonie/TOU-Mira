@@ -1,7 +1,6 @@
 ﻿using AmongUs.Data;
 using MiraAPI.GameOptions;
 using MiraAPI.Utilities.Assets;
-using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Modifiers;
 using TownOfUs.Options.Modifiers.Universal;
 using TownOfUs.Options.Roles.Neutral;
@@ -15,7 +14,7 @@ namespace TownOfUs.Modifiers.Game.Universal;
 
 public sealed class ShyModifier : UniversalGameModifier, IWikiDiscoverable
 {
-    public override string ModifierName => "Shy";
+    public override string ModifierName => TouLocale.Get(TouNames.Shy, "Shy");
     public override LoadableAsset<Sprite>? ModifierIcon => TouModifierIcons.Shy;
 
     public override ModifierFaction FactionType => ModifierFaction.UniversalVisibility;

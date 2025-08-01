@@ -11,7 +11,6 @@ using Reactor.Utilities;
 using TownOfUs.Buttons.Crewmate;
 using TownOfUs.Modifiers;
 using TownOfUs.Modifiers.Crewmate;
-using TownOfUs.Modules.Wiki;
 using TownOfUs.Options.Roles.Crewmate;
 using TownOfUs.Utilities;
 using UnityEngine;
@@ -22,7 +21,7 @@ public sealed class SeerRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRol
 {
     public override bool IsAffectedByComms => false;
     public DoomableType DoomHintType => DoomableType.Fearmonger;
-    public string RoleName => "Seer";
+    public string RoleName => TouLocale.Get(TouNames.Seer, "Seer");
     public string RoleDescription => "Compare The Alignment Of Two Players";
     public string RoleLongDescription => "Compare two players to see if they have matching or conflicting alignments";
     public Color RoleColor => TownOfUsColors.Seer;
@@ -42,7 +41,7 @@ public sealed class SeerRole(IntPtr cppPtr) : CrewmateRole(cppPtr), ITownOfUsRol
 
     public string GetAdvancedDescription()
     {
-        return "The Seer is a Crewmate Investigative role that can compare two players to see if they have matching or conflicting alignments.\n\nCrewmates appear enemies to Impostors and Neutrals.\nImpostors appear enemies to Crewmates and Neutrals.\nNeutrals appear enemies to Crewmates and Impostors."
+        return $"The {RoleName} is a Crewmate Investigative role that can compare two players to see if they have matching or conflicting alignments.\n\nCrewmates appear enemies to Impostors and Neutrals.\nImpostors appear enemies to Crewmates and Neutrals.\nNeutrals appear enemies to Crewmates and Impostors."
                + MiscUtils.AppendOptionsText(GetType());
     }
 
