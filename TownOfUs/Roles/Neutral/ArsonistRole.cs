@@ -29,6 +29,7 @@ public sealed class ArsonistRole(IntPtr cppPtr) : NeutralRole(cppPtr), ITownOfUs
     public Color RoleColor => TownOfUsColors.Arsonist;
     public ModdedRoleTeams Team => ModdedRoleTeams.Custom;
     public RoleAlignment RoleAlignment => RoleAlignment.NeutralKilling;
+    public bool HasImpostorVision => OptionGroupSingleton<ArsonistOptions>.Instance.HasImpostorVision;
 
     public CustomRoleConfiguration Configuration => new(this)
     {
