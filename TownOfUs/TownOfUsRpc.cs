@@ -78,5 +78,6 @@ public enum TownOfUsRpc : uint
     Compare,
     BarkeeperRoleblock,
     BootleggerRoleblock,
-    AmbushPlayer
+    AmbushPlayer,
+    RetrainConfirm
 }

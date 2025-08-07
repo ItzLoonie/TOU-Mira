@@ -16,6 +16,9 @@ public static class TouAssets
     
     public static readonly LoadableAsset<GameObject> AltRoleSelectionGame =
         new LoadableBundleAsset<GameObject>("AmbassadorRoleGame", MainBundle);
+    
+    public static readonly LoadableAsset<GameObject> ConfirmMinigame =
+        new LoadableBundleAsset<GameObject>("AmbassadorConfirmGame", MainBundle);
 
     public static LoadableAsset<GameObject> WikiPrefab { get; } =
         new LoadableBundleAsset<GameObject>("IngameWiki", MainBundle);
@@ -219,17 +222,17 @@ public static class TouAssets
     {
         get
         {
-            var name = "Default";
+            var name = TouLocale.Get(TouNames.ArrowDefault);
             switch (TownOfUsPlugin.ArrowStyle.Value)
             {
                 case 1:
-                    name = "Dark Glow";
+                    name = TouLocale.Get(TouNames.ArrowDarkGlow);
                     break;
                 case 2:
-                    name = "Color Glow";
+                    name = TouLocale.Get(TouNames.ArrowColorGlow);
                     break;
                 case 3:
-                    name = "Legacy";
+                    name = TouLocale.Get(TouNames.ArrowLegacy);
                     break;
             }
             return name;

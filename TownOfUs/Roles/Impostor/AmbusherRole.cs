@@ -58,10 +58,10 @@ public sealed class AmbusherRole(IntPtr cppPtr)
     [
         new("Pursue",
             "Pursue a player to be able to ambush another player next to them at a later time.",
-            TouCrewAssets.TrackSprite),
+            TouImpAssets.PursueSprite),
         new("Ambush",
         "Ambush the closest player to the pursued target to kill them.",
-        TouImpAssets.DragSprite)
+        TouImpAssets.AmbushSprite)
     ];
     
     public void LobbyStart()
@@ -228,7 +228,7 @@ public sealed class AmbusherRole(IntPtr cppPtr)
                 if (ambusher.AmOwner) ambusher.RpcSetPos(ogPos);
                 var targetPos = ogPos + new Vector3(-0.05f, 0.175f, 0f);
                 targetPos.z = targetPos.y / 1000f;
-                body.transform.position = targetPos;
+                body.transform.position = (ambusher.Collider.bounds.center - targetPos) + targetPos;
             }
             
             ambusher.Visible = true;
